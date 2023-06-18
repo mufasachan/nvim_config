@@ -1,3 +1,6 @@
 return {
-  "folke/lazy.nvim"
+  "folke/lazy.nvim",
+  keys = {
+    { "<Leader>hz", "<CMD>Lazy help<CR>" },
+  }
 }

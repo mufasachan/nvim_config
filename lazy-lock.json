@@ -3,5 +3,6 @@
   "lazy.nvim": { "branch": "main", "commit": "67af46a7f53e06322753cdd8cfd524bbb8ca30a2" },
   "nvim-treesitter": { "branch": "master", "commit": "840e5d71787b02789f909315f646a6dd66a0de2c" },
   "plenary.nvim": { "branch": "master", "commit": "36aaceb6e93addd20b1b18f94d86aecc552f30c4" },
+  "vim-pink-moon": { "branch": "master", "commit": "ab1980d1f216aea8060d935b7220bdc42d05a92b" },
   "which-key.nvim": { "branch": "main", "commit": "e271c28118998c93a14d189af3395812a1aa646c" }
 }

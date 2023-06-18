@@ -18,8 +18,15 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Général
 vim.g.mapleader = " "
-vim.opt.number = true
+vim.opt.number = false
 vim.opt.relativenumber = true
+vim.opt.sw = 2
+vim.opt.termguicolors = true
+
+local map = vim.api.nvim_set_keymap
+map("n", "<Leader>wq", ":wq<CR>", {})
+map("n", "<Leader>q", ":q<CR>", {})
+map("n", "<C-s>", ":w<CR>", {})
 
 -- Chargement plugins
 require("lazy").setup("plugins")
