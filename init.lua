@@ -14,19 +14,17 @@ end
 -- NOTE: On rajoute dans la recherche de config le répertoire de plugin !
 vim.opt.rtp:prepend(lazypath)
 -- require -> cherche dans .config/nvim
--- It searches it inside lazy.lua or lazy/init.lua
 
 -- Général
 vim.g.mapleader = " "
-vim.opt.number = false
+vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.sw = 2
-vim.opt.termguicolors = true
 
 local map = vim.api.nvim_set_keymap
+-- Exit and save
 map("n", "<Leader>wq", ":wq<CR>", {})
 map("n", "<Leader>q", ":q<CR>", {})
 map("n", "<C-s>", ":w<CR>", {})
 
--- Chargement plugins
 require("lazy").setup("plugins")
