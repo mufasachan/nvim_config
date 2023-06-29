@@ -24,7 +24,10 @@ vim.opt.sw = 2
 local map = vim.api.nvim_set_keymap
 -- Exit and save
 map("n", "<Leader>wq", ":wq<CR>", {})
-map("n", "<Leader>q", ":q<CR>", {})
+map("n", "<Leader>qq", ":q<CR>", {desc = 'Quit'})
+map("n", "<Leader>qa", ":qa<CR>", {desc = 'Quit all'})
+map("n", "<Leader>qQ", ":q!<CR>", {desc = 'Quit: Force'})
+map("n", "<Leader>qA", ":qa!<CR>", {desc = 'Quit all: Force'})
 map("n", "<C-s>", ":w<CR>", {})
 
 require("lazy").setup("plugins")

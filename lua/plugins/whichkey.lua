@@ -5,6 +5,7 @@ local function init()
   local wk = require'which-key'
   wk.register({
     ["<Leader>b"] = { name = "Buffer"},
+    ["<Leader>q"] = { name = "Quit"},
   })
 end
 

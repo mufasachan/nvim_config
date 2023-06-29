@@ -25,34 +25,9 @@ map("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 map("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
 map("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Back", silent = true })
-map("n", "<Leader>bc", "<cmd>bdel<cr>", { desc = "Close", silent = true})
-
--- FileExplorer
-map("n", "<leader>e", ":NvimTreeToggle<cr>", { desc = "Explorer", silent = true})
+map("n", "W", "<cmd>bp|bd#<cr>", { noremap = true})
 
 return {
-  {
-    "nvim-tree/nvim-tree.lua",
-    dependencies = {"nvim-tree/nvim-web-devicons"},
-    config = function()
-      -- disable netrw at the very start of your init.lua
-      vim.g.loaded_netrw = 1
-      vim.g.loaded_netrwPlugin = 1
-
-      require("nvim-tree").setup({
-	sort_by = "case_sensitive",
-	view = {
-	  width = 30,
-	},
-	renderer = {
-	  group_empty = true,
-	},
-	filters = {
-	  dotfiles = true,
-	},
-      })
-    end
-  },
   {
     'akinsho/bufferline.nvim',
     version = "*",
