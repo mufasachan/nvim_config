@@ -6,6 +6,7 @@ local function init()
   wk.register({
     ["<Leader>b"] = { name = "Buffer"},
     ["<Leader>q"] = { name = "Quit"},
+    ["<Leader>e"] = { name = "Tree explorer"},
   })
 end
 
