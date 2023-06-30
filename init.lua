@@ -20,6 +20,7 @@ vim.g.mapleader = " "
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.sw = 2
+vim.opt.ts = 2
 
 local map = vim.api.nvim_set_keymap
 -- Exit and save
