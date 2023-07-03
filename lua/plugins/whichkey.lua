@@ -7,6 +7,7 @@ local function init()
     ["<Leader>b"] = { name = "Buffer"},
     ["<Leader>q"] = { name = "Quit"},
     ["<Leader>e"] = { name = "Tree explorer"},
+    ["<Leader>f"] = { name = "Finder"},
   })
 end
 
