@@ -26,7 +26,7 @@ opt.ts = 2
 
 -- Exit and save
 map("n", "<Leader>wq", ":wq<CR>", {})
-map("n", "<Leader>qq", ":q<CR>", {desc = 'Quit'})
+map("n", "<Leader>q", ":q<CR>", {desc = 'Quit'})
 map("n", "<Leader>qa", ":qa<CR>", {desc = 'Quit all'})
 map("n", "<Leader>qQ", ":q!<CR>", {desc = 'Quit: Force'})
 map("n", "<Leader>qA", ":qa!<CR>", {desc = 'Quit all: Force'})

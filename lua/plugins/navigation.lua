@@ -74,6 +74,7 @@ return {
 	    return icon, hl
 	  end,
 	  show_buffer_icons = true, -- disable filetype icons for buffers
+		show_buffer_close_icons = false,
 	  show_tab_indicators = true,
 	  -- whether to show duplicate buffer prefix
 	  show_duplicate_prefix = false,

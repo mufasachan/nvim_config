@@ -1,8 +1,8 @@
 local map = vim.keymap.set
 local del = vim.keymap.del
 
-map("n", "<leader>ee", ":NvimTreeToggle<cr>", { desc = "Open", silent = true})
-map("n", "<leader>eE", ":NvimTreeFindFile<cr>", { desc = "Open: Focus current file", silent = true})
+map("n", "<leader>e", ":NvimTreeToggle<cr>", { desc = "Open tree", silent = true})
+map("n", "<leader>ee", ":NvimTreeFindFile<cr>", { desc = "Open: Focus current file", silent = true})
 local function on_attach_tree(bufnr)
   local api = require'nvim-tree.api'
 
