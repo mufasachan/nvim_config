@@ -6,7 +6,10 @@ local function init()
 	map('n', '<C-p>', builtin.find_files, {desc = "Files"})
 	map('n', '<leader>fg', builtin.live_grep, { desc = "grep"})
 	map('n', '<leader>fh', builtin.help_tags, { desc = "Help tags"})
+	map('n', 'gs', builtin.lsp_document_symbols, { desc = "Symbols"})
 	map('n', 'gr', builtin.lsp_references, { desc = "References"})
+	map('n', 'gt', builtin.lsp_type_definitions, { desc = "Type definition"})
+	map('n', 'gd', builtin.lsp_definitions, { desc = "Definition"})
 	map('n', 't', builtin.pickers)
 end
 
