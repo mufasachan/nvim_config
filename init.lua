@@ -1,5 +1,5 @@
+local map = vim.keymap.set
 local opt = vim.opt
-local map = vim.api.nvim_set_keymap
 -- Download lazy if it does not exist already.
 -- stdpath("data") is ~/.local/share/nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -31,5 +31,6 @@ map("n", "<Leader>qa", ":qa<CR>", {desc = 'Quit all'})
 map("n", "<Leader>qQ", ":q!<CR>", {desc = 'Quit: Force'})
 map("n", "<Leader>qA", ":qa!<CR>", {desc = 'Quit all: Force'})
 map("n", "<C-s>", ":w<CR>", {})
+map('n', '<Leader>h', ':helpclose<cr>', {desc = 'Close help page'})
 
 require("lazy").setup("plugins")
