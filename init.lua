@@ -3,4 +3,4 @@ require('user.autocommands')
 require('user.keymappings')
 require('user.plugins')
 
-pcall(vim.cmd.colorscheme, 'vim-pink-moon')
+pcall(vim.cmd.colorscheme, 'pink-moon')
