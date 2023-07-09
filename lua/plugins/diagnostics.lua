@@ -28,7 +28,7 @@ function plugin.config()
 
 	-- Keymappings for diagnostic
 	local map = vim.keymap.set
-  map('n', '<leader>li', '<cmd>lua vim.diagnostic.open_float()<cr>', {desc = 'Info'})
+  map('n', '<leader>di', '<cmd>lua vim.diagnostic.open_float()<cr>', {desc = 'Info'})
 	map('n', '<Leader>dn', '<cmd>lua vim.diagnostic.goto_next()<CR>', { desc = 'Next'})
 	map('n', '<Leader>dp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { desc = 'Previous'})
 	map('n', '<Leader>dw', ':TroubleToggle<CR>', { desc = 'Workspace'})

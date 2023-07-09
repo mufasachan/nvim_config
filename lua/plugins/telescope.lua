@@ -40,6 +40,8 @@ function plugin.config()
 	local opts = plugin.opts
 	opts.defaults.mappings.n = { ['q'] = require'telescope.actions'.close}
 
+  require('telescope').load_extension('fzf')
+
 	require'telescope'.setup(opts)
 end
 
