@@ -61,6 +61,9 @@ plugin.opts = {
 		buffer = {
 			italic = false
 		},
+		buffer_selected = {
+			italic = false
+		},
 		indicator_selected = {
 			fg = {attribute = 'fg', highlight = 'Function'},
 			italic = false
