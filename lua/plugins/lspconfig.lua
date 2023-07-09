@@ -40,7 +40,7 @@ plugin.dependencies = {
 	{
 		"williamboman/mason.nvim",
 		cmd = { 'Mason', 'LspInstall', 'LspUninstall'},
-		keys = {'<leader>M', '<cmd>Mason<CR>', desc = 'Mason'},
+		keys = { {'<leader>M', '<cmd>Mason<CR>', desc = 'Mason'} },
 		config = function () user.setup_mason() end
 	},
 }
