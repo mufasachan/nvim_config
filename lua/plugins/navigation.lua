@@ -9,13 +9,6 @@ map("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 
 return {
 	{
-		'moll/vim-bbye',
-		cmd = 'Bdelete',
-		init = function()
-			vim.keymap.set('n', '<leader>bc', '<cmd>Bdelete<CR>')
-		end,
-	},
-	{
 		'akinsho/bufferline.nvim',
 		version = "*",
 		dependencies = 'nvim-tree/nvim-web-devicons',
