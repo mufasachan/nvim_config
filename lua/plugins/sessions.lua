@@ -4,7 +4,6 @@ plugin.dependencies = 'nvim-lua/plenary.nvim'
 
 function plugin.config()
 	local config = require'session_manager.config'
-	local session_manager = require'session_manager'
 
 	-- There are good autocommand in doc session-manager
 	require'session_manager'.setup{
