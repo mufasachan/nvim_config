@@ -1,6 +1,6 @@
-local Plugin = {'hrsh7th/nvim-cmp'}
+local plugin = {'hrsh7th/nvim-cmp'}
 
-Plugin.dependencies = {
+plugin.dependencies = {
   -- Sources
   {'hrsh7th/cmp-buffer'},
   {'hrsh7th/cmp-path'},
@@ -11,9 +11,9 @@ Plugin.dependencies = {
   {'rafamadriz/friendly-snippets'},
 }
 
-Plugin.event = 'InsertEnter'
+plugin.event = 'InsertEnter'
 
-function Plugin.config()
+function plugin.config()
   vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 
   local cmp = require('cmp')
@@ -101,6 +101,6 @@ function Plugin.config()
   })
 end
 
-return Plugin
+return plugin
 
 

@@ -1,15 +1,15 @@
-local Plugin = {'nvim-treesitter/nvim-treesitter'}
+local plugin = {'nvim-treesitter/nvim-treesitter'}
 
-Plugin.dependencies = {
+plugin.dependencies = {
   {'nvim-treesitter/nvim-treesitter-textobjects'}
 }
 
-Plugin.build = {
+plugin.build = {
   build = ":TSUpdate",
 }
 
 -- See :help nvim-treesitter-modules
-Plugin.opts = {
+plugin.opts = {
   highlight = {
     enable = true,
   },
@@ -35,8 +35,8 @@ Plugin.opts = {
   },
 }
 
-function Plugin.config(name, opts)
+function plugin.config(name, opts)
   require('nvim-treesitter.configs').setup(opts)
 end
 
-return Plugin
+return plugin
