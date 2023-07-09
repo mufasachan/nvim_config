@@ -1,6 +1,6 @@
 return {
   "folke/lazy.nvim",
-  keys = {
-    { "<Leader>L", "<CMD>Lazy<CR>", desc = "Lazy"},
-  }
+  init = function ()
+		vim.keymap.set("n", "<Leader>L", "<CMD>Lazy<CR>", {desc = "Lazy"})
+  end,
 }

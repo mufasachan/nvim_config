@@ -1,0 +1,14 @@
+return {}
+-- print(vim.inspect(vim.api.nvim_buf_get_config(vim.fn.buf_getid())))
+-- return {
+-- 	"folke/persistence.nvim",
+-- 	event = "BufReadPre",
+-- 	opts = {},
+-- 	init = function ()
+-- 		vim.api.nvim_create_autocmd('VimEnter', {
+-- 			callback = function ()
+-- 				require("persistence").load({ last = true })
+-- 			end
+-- 		})
+-- 	end
+-- }

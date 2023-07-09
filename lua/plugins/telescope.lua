@@ -5,8 +5,10 @@ local function init()
 
 	map('n', '<C-p>', builtin.find_files, {desc = "Files"})
 	map('n', '<leader>fg', builtin.live_grep, { desc = "grep"})
+	-- map('n', '<leader>fs', builtin.lsp_document_symbols({
+	-- 	-- ignore magic symobls are other useless one
+	-- }), { desc = "Document Symbols"})
 	map('n', '<leader>fh', builtin.help_tags, { desc = "Help tags"})
-	map('n', 'gs', builtin.lsp_document_symbols, { desc = "Symbols"})
 	map('n', 'gr', builtin.lsp_references, { desc = "References"})
 	map('n', 'gt', builtin.lsp_type_definitions, { desc = "Type definition"})
 	map('n', 'gd', builtin.lsp_definitions, { desc = "Definition"})
@@ -22,7 +24,7 @@ local function config()
 			layout_config = {
 				width = 0.95,
 				height = 0.95,
-				preview_height = .6,
+				preview_height = .55,
 				preview_cutoff = 0,
 			},
 			mappings = {

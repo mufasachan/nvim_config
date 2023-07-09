@@ -6,7 +6,6 @@ local function init()
   wk.register({
     ["<Leader>b"] = { name = "Buffer"},
     ["<Leader>f"] = { name = "Finder"},
-    ["<Leader>w"] = { name = "Diagnostics"},
   })
 end
 

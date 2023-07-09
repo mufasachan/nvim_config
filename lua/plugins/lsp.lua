@@ -5,8 +5,10 @@ map('n', 'K', ':lua vim.lsp.buf.hover()<CR>')
 local M_mason = {
   "williamboman/mason.nvim",
   build = ":MasonUpdate",
-  keys = {{ "<leader>M", "<cmd>Mason<cr>", desc = "Mason"}},
   opts = {},
+	init = function()
+		map('n', "<leader>M", "<cmd>Mason<cr>", {desc = "Mason"})
+	end
 }
 
 local M_mason_lspconfig = {

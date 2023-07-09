@@ -1,33 +1,20 @@
 local map = vim.keymap.set
 
 -- from Lazy keymaps
--- better up/down
-map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-
--- Move to window using the <ctrl> hjkl keys
-map("n", "<C-h>", "<C-w>h", {remap = true})
-map("n", "<C-j>", "<C-w>j", {remap = true})
-map("n", "<C-k>", "<C-w>k", {remap = true})
-map("n", "<C-l>", "<C-w>l", {remap = true})
-
--- Move Lines
-map("n", "<A-j>", "<cmd>m .+1<cr>==", { silent = true })
-map("n", "<A-k>", "<cmd>m .-2<cr>==", { silent = true })
-map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { silent = true })
-map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { silent = true })
-map("v", "<A-j>", ":m '>+1<cr>gv=gv", { silent = true })
-map("v", "<A-k>", ":m '<-2<cr>gv=gv", { silent = true })
-
 -- Cycle buffer with bufferline
 map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
 map("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 map("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
 map("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
-map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Back", silent = true })
-map("n", "W", "<cmd>bp|bd#<cr>", { noremap = true})
 
 return {
+	{
+		'moll/vim-bbye',
+		cmd = 'Bdelete',
+		init = function()
+			vim.keymap.set('n', '<leader>bc', '<cmd>Bdelete<CR>')
+		end,
+	},
 	{
 		'akinsho/bufferline.nvim',
 		version = "*",
