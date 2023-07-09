@@ -4,6 +4,7 @@ local function init()
 
   local wk = require'which-key'
   wk.register({
+    ["<Leader>l"] = { name = "LSP"},
     ["<Leader>b"] = { name = "Buffer"},
     ["<Leader>f"] = { name = "Finder"},
   })
