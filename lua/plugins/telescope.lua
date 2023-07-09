@@ -1,50 +1,47 @@
-local map = vim.keymap.set
+local plugin = {'nvim-telescope/telescope.nvim'}
+plugin.name = 'telescope'
 
-local function init()
-	local builtin = require'telescope.builtin'
+plugin.dependencies = {
+	'nvim-lua/plenary.nvim',
+	{'nvim-telescope/telescope-fzf-native.nvim', build = 'make'},
+}
 
-	map('n', '<C-p>', builtin.find_files, {desc = "Files"})
-	map('n', '<leader>fg', builtin.live_grep, { desc = "grep"})
-	-- map('n', '<leader>fs', builtin.lsp_document_symbols({
-	-- 	-- ignore magic symobls are other useless one
-	-- }), { desc = "Document Symbols"})
-	map('n', '<leader>fh', builtin.help_tags, { desc = "Help tags"})
-	map('n', 'gr', builtin.lsp_references, { desc = "References"})
-	map('n', 'gt', builtin.lsp_type_definitions, { desc = "Type definition"})
-	map('n', 'gd', builtin.lsp_definitions, { desc = "Definition"})
-	map('n', 't', builtin.pickers)
-end
+plugin.keys = {
+	{'<C-p>', ':Telescope find_files<CR>'},
+	{'<leader>?', ':Telescope oldfiles<CR>', desc = 'Recent files'},
+	{'<leader>fg', ':Telescope live_grep<CR>', desc = 'Live GREP'},
+	{'<leader>fh', ':Telescope help_tags<CR>', desc = 'Help tags'},
+	{'<leader>ft', ':Telescope pickers<CR>', desc = 'Pickers'},
+	{'<leader>fs', ':Telescope lsp_document_symbols<CR>', desc = 'Document symbols'},
+	{'<leader>fS', ':Telescope lsp_workspace_symbols<CR>', desc = 'Workspace symbols'},
+	-- For diagnositcs, see trouble
+	{'gr', ':Telescope lsp_references<CR>'},
+	{'gt', ':Telescope lsp_type_definitions<CR>'},
+	{'gd', ':Telescope lsp_definitions<CR>'},
+	{'gr', ':Telescope lsp_references<CR>'},
+}
 
-local function config()
-	local actions = require'telescope.actions'
-
-	require'telescope'.setup{
-		defaults = {
-      layout_strategy = 'vertical',
-			layout_config = {
-				width = 0.95,
-				height = 0.95,
-				preview_height = .55,
-				preview_cutoff = 0,
-			},
-			mappings = {
-				n = {
-					["<C-c>"] = actions.close,
-				},
-				i = {
-					["<C-o>"] = {"<esc>", type = "command"},
-				}
-			},
+plugin.opts = {
+	defaults = {
+		layout_strategy = 'vertical',
+		layout_config = {
+			width = 0.95,
+			height = 0.95,
+			preview_height = .55,
+			preview_cutoff = 0,
+		},
+		mappings = {
+			i = { ["jk"] = {"<esc>", type = "command"}, },
 		}
 	}
+}
+
+function plugin.config()
+	local opts = plugin.opts
+	opts.defaults.mappings.n = { ['q'] = require'telescope.actions'.close}
+
+	require'telescope'.setup(opts)
 end
 
-return {
-	'nvim-telescope/telescope.nvim', tag = '0.1.2',
-	dependencies = {
-		'nvim-lua/plenary.nvim',
-		'nvim-treesitter'
-	},
-	init = init,
-	config = config,
-}
+return plugin
+
