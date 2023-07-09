@@ -45,4 +45,3 @@ vim.keymap.set("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Back", silent = true
 vim.keymap.set("x", "H", '"xy:help <C-R>x<CR>',
 	{ desc = "Back", silent = true, noremap = true})
 
-
