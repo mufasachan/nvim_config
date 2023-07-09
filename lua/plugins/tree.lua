@@ -1,8 +1,14 @@
 local map = vim.keymap.set
 local del = vim.keymap.del
 
-map("n", "<leader>e", ":NvimTreeToggle<cr>", { desc = "Open tree", silent = true})
-map("n", "<leader>ee", ":NvimTreeFindFile<cr>", { desc = "Open: Focus current file", silent = true})
+local plugin = {"nvim-tree/nvim-tree.lua"}
+plugin.name = 'nvim-tree'
+
+plugin.keys = {
+	{"<leader>e", ":NvimTreeToggle<cr>", desc = "Open tree", silent = true},
+	{"<leader>E", ":NvimTreeFindFileToggle<cr>", desc = "Open tree (focus on file)", silent = true},
+}
+
 local function on_attach_tree(bufnr)
   local api = require'nvim-tree.api'
 
@@ -35,23 +41,29 @@ local function on_attach_tree(bufnr)
   map("n", "ro", api.fs.rename_sub, opts('Rename: Omit Filename'))
 
 end
-local opts_tree = {
-  on_attach = on_attach_tree,
+plugin.opts = {
+	hijack_cursor = false,
+	on_attach = on_attach_tree,
   sort_by = "case_sensitive",
   view = {width = 30},
   renderer = {group_empty = true},
   filters = {dotfiles = true},
 }
 
-return {
-  "nvim-tree/nvim-tree.lua",
-  dependencies = {"nvim-tree/nvim-web-devicons"},
-  config = function()
-    -- disable netrw at the very start of your init.lua
-    vim.g.loaded_netrw = 1
-    vim.g.loaded_netrwPlugin = 1
+function plugin.config ()
+	vim.g.loaded_netrw = 1
+	vim.g.loaded_netrwPlugin = 1
 
-    require("nvim-tree").setup(opts_tree)
-  end
-}
+	require("nvim-tree").setup(plugin.opts)
+end
+-- map("n", "<leader>e", ":NvimTreeToggle<cr>", { desc = "Open tree", silent = true})
+-- map("n", "<leader>ee", ":NvimTreeFindFile<cr>", { desc = "Open: Focus current file", silent = true})
+-- return {
+--   "nvim-tree/nvim-tree.lua",
+--   dependencies = {"nvim-tree/nvim-web-devicons"},
+--   config = function()
+--     -- disable netrw at the very start of your init.lua
+--   end
+-- }
+return plugin
 

@@ -14,7 +14,7 @@
   "nvim-autopairs": { "branch": "master", "commit": "e8f7dd7a72de3e7b6626c050a802000e69d53ff0" },
   "nvim-cmp": { "branch": "main", "commit": "2743dd989e9b932e1b4813a4927d7b84272a14e2" },
   "nvim-lspconfig": { "branch": "master", "commit": "d9b8d269c59b24d5c6b0bba4d23b1f692be58160" },
-  "nvim-tree.lua": { "branch": "master", "commit": "4af572246ce49883e2a52c49203a19984454f2e0" },
+  "nvim-tree": { "branch": "master", "commit": "a708bd2413d467929b5019ec1bce7b1f428438bc" },
   "nvim-treesitter": { "branch": "master", "commit": "e1ab5391e5c4820dd1ffc2566d29b01573ab52a9" },
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "52f1f3280d9092bfaee5c45be5962fabee3d9654" },
   "nvim-ufo": { "branch": "main", "commit": "43e39ec74cd57c45ca9d8229a796750f6083b850" },
@@ -25,7 +25,6 @@
   "telescope.nvim": { "branch": "master", "commit": "776b509f80dd49d8205b9b0d94485568236d1192" },
   "toggleterm.nvim": { "branch": "main", "commit": "95204ece0f2a54c89c4395295432f9aeedca7b5f" },
   "trouble.nvim": { "branch": "main", "commit": "d99e2abd10808ef91738ce98a5c767e6a51df449" },
-  "vim-bbye": { "branch": "master", "commit": "25ef93ac5a87526111f43e5110675032dbcacf56" },
   "vim-pink-moon": { "branch": "master", "commit": "ab1980d1f216aea8060d935b7220bdc42d05a92b" },
   "which-key.nvim": { "branch": "main", "commit": "d871f2b664afd5aed3dc1d1573bef2fb24ce0484" }
 }
