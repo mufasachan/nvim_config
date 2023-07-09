@@ -1,6 +1,9 @@
-local map = vim.keymap.set
+local plugin = {'akinsho/toggleterm.nvim'}
 
-local function init()
+plugin.config = true
+
+function plugin.init()
+	local map = vim.keymap.set
 	map('n', '<M-1>', ":1ToggleTerm size=5 direction=horizontal<CR>")
 	map('n', '<M-2>', ":2ToggleTerm direction=float<CR>")
 
@@ -11,14 +14,8 @@ local function init()
 		map('t', '<M-BS>', '<Cmd>ToggleTerm<CR>')
 	end
 	_G.set_terminal_keymaps()
+
 end
 
-return {
-	{
-		'akinsho/toggleterm.nvim',
-		version = "*",
-		config = true,
-		init = init,
-	}
-}
+return plugin
 
