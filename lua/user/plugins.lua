@@ -1,7 +1,6 @@
 -- Might add in the future:
 -- m4xshen/hardtime.nvim: Better habits
 -- ThePrimeagen/vim-be-good: Game to be better at nvim
--- nvim-treesitter/nvim-treesitter-context: Show context at the top
 -- karb94/neoscroll.nvim: Crazy good looking scrolling
 local lazy = {}
 

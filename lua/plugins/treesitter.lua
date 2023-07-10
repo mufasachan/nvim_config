@@ -1,4 +1,5 @@
 local plugin = {'nvim-treesitter/nvim-treesitter'}
+plugin.name = 'treesitter'
 
 plugin.dependencies = {
   {'nvim-treesitter/nvim-treesitter-textobjects'}
