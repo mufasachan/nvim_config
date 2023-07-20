@@ -29,6 +29,7 @@ function user.on_attach()
   bufmap('n', '<leader>lr', '<cmd>lua vim.lsp.buf.rename()<cr>', 'Rename')
   bufmap({'n', 'x'}, '<leader>lf', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', 'Format')
   bufmap('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<cr>', 'Action')
+  bufmap('n', '<leader>li', '<cmd>LspInfo<cr>', 'Info')
 end
 
 local plugin = {"neovim/nvim-lspconfig"}
