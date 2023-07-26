@@ -33,5 +33,6 @@
   "trouble.nvim": { "branch": "main", "commit": "d99e2abd10808ef91738ce98a5c767e6a51df449" },
   "vim-pink-moon": { "branch": "master", "commit": "ab1980d1f216aea8060d935b7220bdc42d05a92b" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
+  "vimtex": { "branch": "master", "commit": "877de3ba5de5f766e5bfa1c3fb0d2ecfcd18f868" },
   "which-key.nvim": { "branch": "main", "commit": "d871f2b664afd5aed3dc1d1573bef2fb24ce0484" }
 }
