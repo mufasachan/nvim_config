@@ -36,7 +36,7 @@ local plugin = {"neovim/nvim-lspconfig"}
 plugin.name = "lspconfig"
 
 plugin.dependencies = {
-	"sar/cmp-nvim-lsp",
+	"hrsh7th/cmp-nvim-lsp",
 	{"williamboman/mason-lspconfig.nvim", lazy = true},
 	{
 		"williamboman/mason.nvim",
@@ -83,11 +83,6 @@ function plugin.config()
 		function (server)
 			lspconfig[server].setup({})
 		end,
-		-- Since lua_ls is not managed by mason, I have to 
-		-- enable it 'by hand'.
-		-- ['lua_ls'] = function()
-		-- 	require('plugins.lsp.lua_ls')
-  --   end
 	})
 	require('plugins.lsp.lua_ls')
 
