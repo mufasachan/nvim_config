@@ -1,16 +1,19 @@
-vim.opt.number = true
-vim.opt.rnu = true
-vim.opt.mouse = ''
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.hlsearch = false
-vim.opt.wrap = true
-vim.opt.breakindent = true
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = false
-vim.opt.signcolumn = 'yes'
-vim.opt.helpheight = 42
+vim.o.number = true
+vim.o.rnu = true
 
-vim.opt.termguicolors = true
+vim.o.mouse = ''
 
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.hlsearch = false
+
+vim.o.wrap = true
+vim.o.breakindent = true
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.expandtab = false
+vim.o.signcolumn = 'yes'
+vim.o.helpheight = 42
+vim.o.showmode = false
+
+vim.o.termguicolors = true
