@@ -8,6 +8,7 @@ plugin.dependencies = {
 
 plugin.keys = {
 	{'<C-p>', ':Telescope find_files<CR>'},
+	{'<C-S-p>', ':Telescope find_files  hidden=true<CR>'},
 	{'<leader>?', ':Telescope oldfiles<CR>', desc = 'Recent files'},
 	{'<leader>fg', ':Telescope live_grep<CR>', desc = 'Live GREP'},
 	{'<leader>fh', ':Telescope help_tags<CR>', desc = 'Help tags'},
