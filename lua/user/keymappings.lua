@@ -21,7 +21,9 @@ vim.keymap.set("i", "jk", '<esc>')
 vim.keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
--- Move to window using the <ctrl> hjkl keys
+-- Splits
+vim.keymap.set("n", "<C-z>", "<CMD>vsplit<CR>", {silent = true})
+vim.keymap.set("n", "<C-S-z>", "<CMD>split<CR>", {silent = true})
 vim.keymap.set("n", "<C-h>", "<C-w>h", {remap = true})
 vim.keymap.set("n", "<C-j>", "<C-w>j", {remap = true})
 vim.keymap.set("n", "<C-k>", "<C-w>k", {remap = true})
