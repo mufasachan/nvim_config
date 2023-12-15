@@ -34,43 +34,34 @@ local handler = function(virtText, lnum, endLnum, width, truncate)
   return newVirtText
 end
 
-return {
-  {
-    'kevinhwang91/nvim-ufo',
-    dependencies = {
-      'kevinhwang91/promise-async',
-      { "luukvbaal/statuscol.nvim",
-	config = function()
-	  local builtin = require("statuscol.builtin")
-	  require("statuscol").setup({
-	    relculright = true,
-	    segments = {
-	      { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-	      { text = { "%s" }, click = "v:lua.ScSa" },
-	      { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
-	    },
-	  })
-	end,
-      },
-    },
-    config = function ()
-      -- UFO config for folding
-      vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-      vim.o.foldcolumn = '1' -- '0' is not bad
-      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-      vim.o.foldlevelstart = 99
-      vim.o.foldenable = true
-      -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
-      vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-      vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
-      vim.keymap.set('n', 'H', 'za')
+local plugin = {'kevinhwang91/nvim-ufo'}
+plugin.name = 'ufo'
 
-      require('ufo').setup({
-	provider_selector = function()
-	  return {'treesitter', 'indent'}
-	end,
-	fold_virt_text_handler = handler
-      })
-    end,
-  },
+plugin.dependencies = {
+	'statuscol',
+	'kevinhwang91/promise-async',
+	'treesitter',
 }
+
+local opts = {
+				provider_selector = function()
+					return {'treesitter', 'indent'}
+				end,
+				fold_virt_text_handler = handler
+}
+function plugin.config()
+	-- UFO config for folding
+	-- vim.o.fillchars = 
+	vim.o.foldcolumn = '1' -- '0' is not bad
+	vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+	vim.o.foldlevelstart = 99
+	vim.o.foldenable = true
+	-- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
+	vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+	vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+	vim.keymap.set('n', 'H', 'za')
+
+	require('ufo').setup(opts)
+end
+
+return plugin
