@@ -1,7 +1,10 @@
+-- Might add in the future:
+-- m4xshen/hardtime.nvim: Better habits
+-- ThePrimeagen/vim-be-good: Game to be better at nvim
+-- karb94/neoscroll.nvim: Crazy good looking scrolling
 require('user.settings')
 require('user.autocommands')
-require('user.keymappings')
 require('user.plugins')
-require('user.neovide')
+require('user.keymappings')
 
-pcall(vim.cmd.colorscheme, 'pink-moon')
+require("lazy").setup("plugins")
