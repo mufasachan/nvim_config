@@ -2,9 +2,17 @@
 vim.g.mapleader = ' '
 
 -- Shortcuts
-vim.keymap.set({'n', 'x', 'o'}, '<M-h>', '^', { desc = 'Start of line'})
-vim.keymap.set({'n', 'x', 'o'}, '<M-l>', 'g_', { desc = 'End of line'})
-vim.keymap.set('n', '<leader>a', ':keepjumps normal! ggVG<cr>', { desc = 'Select all'})
+vim.keymap.set({ 'n', 'x', 'o' }, '<M-h>', '^', { desc = 'Start of line' })
+vim.keymap.set({ 'n', 'x', 'o' }, '<M-l>', 'g_', { desc = 'End of line' })
+vim.keymap.set(
+	'n',
+	'<leader>a',
+	':keepjumps normal! ggVG<cr>',
+	{ desc = 'Select all' }
+)
+
+-- Clear current line
+vim.keymap.set("n", "\\c", "0D", { silent = true })
 
 -- Basic clipboard interaction
 -- disable on tablet
@@ -12,7 +20,7 @@ vim.keymap.set('n', '<leader>a', ':keepjumps normal! ggVG<cr>', { desc = 'Select
 -- vim.keymap.set({'n', 'x'}, 'gp', '"+p') -- paste
 
 -- Delete text
-vim.keymap.set({'n', 'x'}, 'x', '"_x')
+vim.keymap.set({ 'n', 'x' }, 'x', '"_x')
 
 -- Exit insert mode
 vim.keymap.set("i", "jk", '<esc>')
@@ -22,12 +30,12 @@ vim.keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, si
 vim.keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
 -- Splits
-vim.keymap.set("n", "<C-z>", "<CMD>vsplit<CR>", {silent = true})
-vim.keymap.set("n", "<C-S-z>", "<CMD>split<CR>", {silent = true})
-vim.keymap.set("n", "<C-h>", "<C-w>h", {remap = true})
-vim.keymap.set("n", "<C-j>", "<C-w>j", {remap = true})
-vim.keymap.set("n", "<C-k>", "<C-w>k", {remap = true})
-vim.keymap.set("n", "<C-l>", "<C-w>l", {remap = true})
+vim.keymap.set("n", "<C-z>", "<CMD>vsplit<CR>", { silent = true })
+vim.keymap.set("n", "<C-S-z>", "<CMD>split<CR>", { silent = true })
+vim.keymap.set("n", "<C-h>", "<C-w>h", { remap = true })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { remap = true })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { remap = true })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { remap = true })
 
 -- Move Lines
 vim.keymap.set("n", "<A-j>", "<cmd>m .+1<cr>==", { silent = true })
@@ -38,12 +46,11 @@ vim.keymap.set("v", "<A-j>", ":m '>+1<cr>gv=gv", { silent = true })
 vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv", { silent = true })
 
 -- Commands
-vim.keymap.set("n", "<Leader>q", ":q<CR>", {desc = 'Quit'})
-vim.keymap.set('n', '<leader>w', '<cmd>write<cr>', { desc = 'Save'})
+vim.keymap.set("n", "<Leader>q", ":q<CR>", { desc = 'Quit' })
+vim.keymap.set('n', '<leader>w', '<cmd>write<cr>', { desc = 'Save' })
 -- Commands: Buffer
-vim.keymap.set("n", "<Leader>c", "<cmd>bp|bd#<cr>", { desc = 'Close buffer'})
+vim.keymap.set("n", "<Leader>c", "<cmd>bp|bd#<cr>", { desc = 'Close buffer' })
 vim.keymap.set("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Back", silent = true })
 -- Commands: Help page
 vim.keymap.set("x", "H", '"xy:help <C-R>x<CR>',
-	{ desc = "Back", silent = true, noremap = true})
-
+	{ desc = "Back", silent = true, noremap = true })
