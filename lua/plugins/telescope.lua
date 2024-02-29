@@ -1,26 +1,32 @@
-local plugin = {'nvim-telescope/telescope.nvim'}
+-- Set hidden files but not .git in vimgrep
+-- local vimgrep_arguments = { unpack(telescope_config.values.vimgrep_arguments) }
+-- table.insert(vimgrep_arguments, "--hidden")
+-- table.insert(vimgrep_arguments, "--glob")
+-- table.insert(vimgrep_arguments, "!**/.git/*")
+-- plugin.opts.defaults.vimgrep_arguments = vimgrep_arguments
+local plugin = { 'nvim-telescope/telescope.nvim' }
 plugin.name = 'telescope'
+
+plugin.keys = {
+	{ 'gf',         ':Telescope find_files<CR>',                desc = 'Find files' },
+	{ '<leader>?',  ':Telescope oldfiles<CR>',                  desc = 'Recent files' },
+	{ '<leader>fg', ':Telescope live_grep<CR>',                 desc = 'Live GREP' },
+	{ '<leader>fh', ':Telescope help_tags<CR>',                 desc = 'Help tags' },
+	{ '<leader>ft', ':Telescope pickers<CR>',                   desc = 'Pickers' },
+	{ 'gs',         ':Telescope lsp_document_symbols<CR>',      desc = 'Document symbols' },
+	{ 'gS',         ':Telescope lsp_workspace_symbols<CR>',     desc = 'Workspace symbols' },
+	{ '<leader>ff', ':Telescope current_buffer_fuzzy_find<CR>', desc = 'Fuzzy find' },
+	-- For diagnositcs, see trouble
+	{ 'gr',         ':Telescope lsp_references<CR>' },
+	{ 'gt',         ':Telescope lsp_type_definitions<CR>' },
+	{ 'gd',         ':Telescope lsp_definitions<CR>' },
+}
 
 plugin.dependencies = {
 	'nvim-lua/plenary.nvim',
-	{'nvim-telescope/telescope-fzf-native.nvim', build = 'make'},
+	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 }
 
-plugin.keys = {
-	{'<C-p>', ':Telescope find_files<CR>'},
-	{'<C-S-p>', ':Telescope find_files  hidden=true<CR>'},
-	{'<leader>?', ':Telescope oldfiles<CR>', desc = 'Recent files'},
-	{'<leader>fg', ':Telescope live_grep<CR>', desc = 'Live GREP'},
-	{'<leader>fh', ':Telescope help_tags<CR>', desc = 'Help tags'},
-	{'<leader>ft', ':Telescope pickers<CR>', desc = 'Pickers'},
-	{'<leader>fs', ':Telescope lsp_document_symbols<CR>', desc = 'Document symbols'},
-	{'<leader>fS', ':Telescope lsp_workspace_symbols<CR>', desc = 'Workspace symbols'},
-  {'<leader>ff', ':Telescope current_buffer_fuzzy_find<CR>', desc = 'Fuzzy find'},
-	-- For diagnositcs, see trouble
-	{'gr', ':Telescope lsp_references<CR>'},
-	{'gt', ':Telescope lsp_type_definitions<CR>'},
-	{'gd', ':Telescope lsp_definitions<CR>'},
-}
 
 plugin.opts = {
 	defaults = {
@@ -32,19 +38,20 @@ plugin.opts = {
 			preview_cutoff = 0,
 		},
 		mappings = {
-			i = { ["jk"] = {"<esc>", type = "command"}, },
-		}
-	}
+			n = { ["q"] = "close" },
+			i = { ["kj"] = "close" },
+		},
+	},
+	pickers = {
+		find_files = { hidden = true, no_ignore = true },
+	},
 }
 
 function plugin.config()
-	local opts = plugin.opts
-	opts.defaults.mappings.n = { ['q'] = require'telescope.actions'.close}
+	local telescope = require "telescope"
 
-  require('telescope').load_extension('fzf')
-
-	require'telescope'.setup(opts)
+	telescope.load_extension('fzf')
+	telescope.setup(plugin.opts)
 end
 
 return plugin
-
