@@ -28,6 +28,8 @@ function plugin.config()
 				enable = true,
 				lookahead = true,
 				keymaps = {
+					['ac'] = '@conditional.outer',
+					['ic'] = '@conditional.inner',
 					['af'] = '@function.outer',
 					['if'] = '@function.inner',
 				}
