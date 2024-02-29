@@ -44,6 +44,10 @@ local function on_attach_tree(bufnr)
 
 end
 plugin.opts = {
+	update_focused_file = {
+		enable = true,
+		update_root = true,
+	},
 	hijack_cursor = false,
 	on_attach = on_attach_tree,
   sort_by = "case_sensitive",
