@@ -16,6 +16,7 @@ plugin.keys = {
 	{ 'gs',         ':Telescope lsp_document_symbols<CR>',      desc = 'Document symbols' },
 	{ 'gS',         ':Telescope lsp_workspace_symbols<CR>',     desc = 'Workspace symbols' },
 	{ '<leader>ff', ':Telescope current_buffer_fuzzy_find<CR>', desc = 'Fuzzy find' },
+	{ '<leader>lr', ':Telescope lsp_references<CR>', desc = 'Fuzzy find' },
 	-- For diagnositcs, see trouble
 	{ 'gr',         ':Telescope lsp_references<CR>' },
 	{ 'gt',         ':Telescope lsp_type_definitions<CR>' },
@@ -43,7 +44,9 @@ plugin.opts = {
 		},
 	},
 	pickers = {
-		find_files = { hidden = true, no_ignore = true },
+		find_files = {
+			find_command = { "fdfind", "-H", "-I", "--exclude", ".git", "--type", "f" },
+		}
 	},
 }
 
