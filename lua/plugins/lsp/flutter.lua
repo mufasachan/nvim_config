@@ -7,7 +7,7 @@ plugin.name = "flutter-tools"
 plugin.dependencies = {
 	"nvim-lua/plenary.nvim",
 	"stevearc/dressing.nvim",
-	"which-key",
+	"which-key"
 }
 
 local function on_attach()
