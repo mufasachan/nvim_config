@@ -1,8 +1,11 @@
-local function init()
-  vim.o.timeout = true
+local plugin = { "folke/which-key.nvim" }
+plugin.name = "which-key"
+
+plugin.init = function ()
+	vim.o.timeout = true
   vim.o.timeoutlen = 500
 
-  local wk = require'which-key'
+  local wk = require"which-key"
   wk.register({
     ["<Leader>l"] = { name = "LSP"},
     ["<Leader>b"] = { name = "Buffer"},
@@ -10,14 +13,11 @@ local function init()
   })
 end
 
-local options = {
+plugin.opts = {
   -- Whichkey is enabled with those keys
   triggers = { "<Leader>", }
 }
 
-return {{
-  "folke/which-key.nvim",
-  event = "VeryLazy",
-  init = init,
-  opts = options,
-}}
+plugin.event = "VeryLazy"
+
+return plugin

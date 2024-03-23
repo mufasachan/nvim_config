@@ -7,11 +7,11 @@ plugin.name = "flutter-tools"
 plugin.dependencies = {
 	"nvim-lua/plenary.nvim",
 	"stevearc/dressing.nvim",
-	"lspconfig",
+	"which-key",
 }
 
 local function on_attach()
-	local wk = require 'which-key'
+	local wk = require "which-key"
 	wk.register({
 		["<Leader>L"] = { name = "Flutter" },
 	})
