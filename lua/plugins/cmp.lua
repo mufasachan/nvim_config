@@ -60,6 +60,7 @@ function plugin.config()
       ['<C-d>'] = cmp.mapping.scroll_docs(4),
 
       ['<C-e>'] = cmp.mapping.abort(),
+      ['<C-x>'] = cmp.mapping.complete(),
       ['<CR>'] = cmp.mapping.confirm({select = true}),
 
 			-- Snippet navigation in placeholders
