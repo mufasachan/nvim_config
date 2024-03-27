@@ -15,5 +15,5 @@ vim.o.expandtab = false
 vim.o.signcolumn = 'yes'
 vim.o.helpheight = 42
 vim.o.showmode = false
-
-vim.o.termguicolors = true
+vim.cmd [[hi Normal ctermbg=NONE guibg=NONE]]
+vim.cmd [[hi NonText ctermbg=NONE guibg=NONE]]
