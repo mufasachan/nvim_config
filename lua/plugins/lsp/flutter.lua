@@ -21,6 +21,7 @@ local function on_attach()
 	vim.keymap.set("n", "<Leader>Lr", "<CMD>FlutterRestart<CR>", {  desc = "Restart" })
 	vim.keymap.set("n", "<Leader>Lo", "<CMD>FlutterOutlineToggle<CR>", {  desc = "Outline toggle" })
 	vim.keymap.set("n", "<Leader>Lq", "<CMD>FlutterQuit<CR>", {  desc = "Quit" })
+	vim.keymap.set("n", "<Leader>Lc", "<CMD>FlutterCopyProfilerUrl<CR>", {  desc = "Copy dev URL" })
 end
 
 plugin.opts = {
