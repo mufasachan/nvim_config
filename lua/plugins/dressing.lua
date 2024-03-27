@@ -1,6 +1,7 @@
 local plugin = { 'stevearc/dressing.nvim' }
 
 plugin.opts = {
+	enabled = true,
 	input = {
 		mappings = {
 			i = {
