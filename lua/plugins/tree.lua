@@ -62,14 +62,6 @@ function plugin.config ()
 
 	require("nvim-tree").setup(plugin.opts)
 end
--- map("n", "<leader>e", ":NvimTreeToggle<cr>", { desc = "Open tree", silent = true})
--- map("n", "<leader>ee", ":NvimTreeFindFile<cr>", { desc = "Open: Focus current file", silent = true})
--- return {
---   "nvim-tree/nvim-tree.lua",
---   dependencies = {"nvim-tree/nvim-web-devicons"},
---   config = function()
---     -- disable netrw at the very start of your init.lua
---   end
--- }
+
 return plugin
 
