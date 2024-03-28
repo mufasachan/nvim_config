@@ -1,6 +1,10 @@
-local plugin = {'akinsho/bufferline.nvim'}
+local plugin = { 'akinsho/bufferline.nvim' }
 plugin.name = 'bufferline'
 plugin.version = "*"
+
+plugin.depencies = {
+	{ "nvim-tree/nvim-web-devicons" },
+}
 
 plugin.event = 'VeryLazy'
 
@@ -23,7 +27,7 @@ plugin.opts = {
 		diagnostics_update_in_insert = false,
 		-- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
 		diagnostics_indicator = function(count, level, diagnostics_dict, context)
-			return "("..count..")"
+			return "(" .. count .. ")"
 		end,
 		offsets = {
 			{
@@ -53,7 +57,7 @@ plugin.opts = {
 		hover = {
 			enabled = false,
 			delay = 200,
-			reveal = {'close'}
+			reveal = { 'close' }
 		},
 		sort_by = 'insert_after_current'
 	},
@@ -65,7 +69,7 @@ plugin.opts = {
 			italic = false
 		},
 		indicator_selected = {
-			fg = {attribute = 'fg', highlight = 'Function'},
+			fg = { attribute = 'fg', highlight = 'Function' },
 			italic = false
 		},
 		diagnostic_selected = { italic = false, },
@@ -81,16 +85,23 @@ plugin.opts = {
 	}
 }
 
-function plugin.init ()
+function plugin.init()
 	local map = vim.keymap.set
-	-- from Lazy keymaps
-	-- Cycle buffer with bufferline
-	map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>")
-	map("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>")
-	map("n", "[b", "<cmd>BufferLineCyclePrev<cr>")
-	map("n", "]b", "<cmd>BufferLineCycleNext<cr>")
+
+	map("n", "<S-Tab>", "<CMD>BufferLineCyclePrev<CR>")
+	map("n", "<Tab>", "<CMD>BufferLineCycleNext<CR>")
+
+	map("n", "<Leader>b>", "<CMD>BufferLineMoveNext<CR>", { desc = "Move next" })
+	map("n", "<Leader>b<", "<CMD>BufferLineMovePrev<CR>", { desc = "Move previous" })
+	map("n", "<Leader>bc", "<CMD>BufferLineCloseOthers<CR>", { desc = "Close others" })
+	-- Dvorak quick jump
+	map("n", "<Leader>ba", "<CMD>BufferLineGoToBuffer 1<CR>", { desc = "Close others" })
+	map("n", "<Leader>bo", "<CMD>BufferLineGoToBuffer 2<CR>", { desc = "Close others" })
+	map("n", "<Leader>be", "<CMD>BufferLineGoToBuffer 3<CR>", { desc = "Close others" })
+	map("n", "<Leader>bu", "<CMD>BufferLineGoToBuffer 4<CR>", { desc = "Close others" })
+	map("n", "<Leader>bi", "<CMD>BufferLineGoToBuffer 5<CR>", { desc = "Close others" })
+
+	map("n", "gp", "<CMD>BufferLinePick<CR>", { desc = "Buffers" })
 end
 
-
 return plugin
-
