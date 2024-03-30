@@ -23,7 +23,7 @@ plugin.keys = {
 }
 
 plugin.dependencies = {
-	'nvim-lua/plenary.nvim',
+	'plenary',
 	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 }
 

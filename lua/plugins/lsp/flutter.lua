@@ -8,7 +8,7 @@ plugin.name = "flutter-tools"
 -- - Rename comment is not working
 
 plugin.dependencies = {
-	"nvim-lua/plenary.nvim",
+	"plenary",
 	"stevearc/dressing.nvim",
 	"which-key"
 }

@@ -1,6 +1,6 @@
 local plugin = { 'nvim-lualine/lualine.nvim' }
 
-plugin.dependencies = { 'nvim-tree/nvim-web-devicons' }
+plugin.dependencies = { 'nvim-web-devicons' }
 
 -- SPECIFICS COMPONENTS SETTINGS
 -- path = 1 is relative path

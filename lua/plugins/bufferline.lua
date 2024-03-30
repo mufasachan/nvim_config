@@ -3,7 +3,7 @@ plugin.name = 'bufferline'
 plugin.version = "*"
 
 plugin.depencies = {
-	{ "nvim-tree/nvim-web-devicons" },
+	{ "nvim-web-devicons" },
 }
 
 plugin.event = 'VeryLazy'

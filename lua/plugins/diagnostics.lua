@@ -1,6 +1,6 @@
 local plugin = {"folke/trouble.nvim"}
 
-plugin.dependencies = { "nvim-tree/nvim-web-devicons" }
+plugin.dependencies = { "nvim-web-devicons" }
 
 function plugin.config()
 	-- Choose shape of diagnostic icons
