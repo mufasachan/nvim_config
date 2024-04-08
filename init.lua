@@ -6,5 +6,6 @@ require('user.settings')
 require('user.autocommands')
 require('user.plugins')
 require('user.keymappings')
+require('user.ft')
 
 require("lazy").setup("plugins")
