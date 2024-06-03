@@ -95,11 +95,11 @@ function plugin.init()
 	map("n", "<Leader>b<", "<CMD>BufferLineMovePrev<CR>", { desc = "Move previous" })
 	map("n", "<Leader>bc", "<CMD>BufferLineCloseOthers<CR>", { desc = "Close others" })
 	-- Dvorak quick jump
-	map("n", "<Leader>ba", "<CMD>BufferLineGoToBuffer 1<CR>", { desc = "Close others" })
-	map("n", "<Leader>bo", "<CMD>BufferLineGoToBuffer 2<CR>", { desc = "Close others" })
-	map("n", "<Leader>be", "<CMD>BufferLineGoToBuffer 3<CR>", { desc = "Close others" })
-	map("n", "<Leader>bu", "<CMD>BufferLineGoToBuffer 4<CR>", { desc = "Close others" })
-	map("n", "<Leader>bi", "<CMD>BufferLineGoToBuffer 5<CR>", { desc = "Close others" })
+	map("n", "<Leader>ba", "<CMD>BufferLineGoToBuffer 1<CR>", { desc = "Goto buffer 1" })
+	map("n", "<Leader>bo", "<CMD>BufferLineGoToBuffer 2<CR>", { desc = "Goto buffer 2" })
+	map("n", "<Leader>be", "<CMD>BufferLineGoToBuffer 3<CR>", { desc = "Goto buffer 3" })
+	map("n", "<Leader>bu", "<CMD>BufferLineGoToBuffer 4<CR>", { desc = "Goto buffer 4" })
+	map("n", "<Leader>bi", "<CMD>BufferLineGoToBuffer 5<CR>", { desc = "Goto buffer 5" })
 
 	map("n", "gp", "<CMD>BufferLinePick<CR>", { desc = "Buffers" })
 end
