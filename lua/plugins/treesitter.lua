@@ -5,16 +5,6 @@ plugin.build = {
 	build = ":TSUpdate",
 }
 
-
-
--- Error / bad implementation with dart
--- https://github.com/NvChad/NvChad/issues/2237#issuecomment-1653019941
--- https://github.com/nvim-treesitter/nvim-treesitter/issues/5868
--- https://github.com/nvim-treesitter/nvim-treesitter/issues/4945
--- Commit with the best working usage
-plugin.branch = "master"
-plugin.commit = "f2778bd1a28b74adf5b1aa51aa57da85adfa3d16"
-
 -- See :help nvim-treesitter-modules
 local opts = {
 	highlight = {
