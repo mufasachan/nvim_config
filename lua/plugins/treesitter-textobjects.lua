@@ -2,10 +2,6 @@ local plugin = { 'nvim-treesitter/nvim-treesitter-textobjects' }
 plugin.name = "treesitter-textobjects"
 plugin.dependencies = { 'treesitter' }
 
--- See note on Dart in treesitter.lua
-plugin.branch = "master"
-plugin.commit = "35a60f093fa15a303874975f963428a5cd24e4a0"
-
 function plugin.config()
 	require("nvim-treesitter.configs").setup {
 		textobjects = {
@@ -42,10 +38,6 @@ function plugin.config()
 			},
 		},
 	}
-end
-
-if false then
-	print("here")
 end
 
 return plugin

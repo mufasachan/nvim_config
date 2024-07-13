@@ -6,27 +6,27 @@ plugin.build = {
 }
 
 -- See :help nvim-treesitter-modules
-local opts = {
-	highlight = {
-		enable = true,
-	},
-	-- :help nvim-treesitter-textobjects-modules
+plugin.opts = {
 	ensure_installed = {
+		"c",
+		"vim",
+		"vimdoc",
+		"query",
+		"markdown",
+		"markdown_inline",
 		"bash",
 		"json",
 		"python",
 		"yaml",
-		'lua',
+		'lua'
 	},
+	highlight = { enable = true },
+	incremental_selection = { enable = true },
+	textobjects = { enable = true },
 	indent = {
 		enable = true,
 		disable = { "dart" },
 	},
 }
-
-function plugin.config()
-	local configs = require('nvim-treesitter.configs')
-	configs.setup(opts)
-end
 
 return plugin

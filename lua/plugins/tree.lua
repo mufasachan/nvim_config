@@ -4,6 +4,8 @@ local del = vim.keymap.del
 local plugin = {"nvim-tree/nvim-tree.lua"}
 plugin.name = 'nvim-tree'
 
+plugin.dependencies = { "nvim-web-devicons" }
+
 plugin.keys = {
 	{"<leader>e", ":NvimTreeToggle<cr>", desc = "Open tree", silent = true},
 	{"<leader>E", ":NvimTreeFindFileToggle<cr>", desc = "Open tree (focus on file)", silent = true},

@@ -7,6 +7,8 @@
 local plugin = { 'nvim-telescope/telescope.nvim' }
 plugin.name = 'telescope'
 
+plugin.dependencies = { "nvim-web-devicons" }
+
 plugin.keys = {
 	{ 'gf',         ':Telescope find_files<CR>',                desc = 'Find files' },
 	{ '<leader>?',  ':Telescope oldfiles<CR>',                  desc = 'Recent files' },
@@ -26,7 +28,6 @@ plugin.dependencies = {
 	'plenary',
 	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 }
-
 
 plugin.opts = {
 	defaults = {

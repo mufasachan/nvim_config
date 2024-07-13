@@ -1,5 +1,4 @@
 local function set_theme()
-	vim.opt.termguicolors = true
 	vim.cmd("colorscheme laserwave")
 end
 
