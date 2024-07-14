@@ -1,5 +1,5 @@
 local function set_theme()
-	vim.cmd("colorscheme laserwave")
+	vim.cmd("colorscheme laserwave-hi_c")
 end
 
 return {
