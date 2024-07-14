@@ -1,3 +1,3 @@
-local plugin = 'lervag/vimtex'
+local plugin = "lervag/vimtex"
 
 return plugin

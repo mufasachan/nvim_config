@@ -1,6 +1,6 @@
-local plugin = { 'nvim-treesitter/nvim-treesitter-textobjects' }
+local plugin = { "nvim-treesitter/nvim-treesitter-textobjects" }
 plugin.name = "treesitter-textobjects"
-plugin.dependencies = { 'treesitter' }
+plugin.dependencies = { "treesitter" }
 
 function plugin.config()
 	require("nvim-treesitter.configs").setup {
@@ -30,10 +30,10 @@ function plugin.config()
 				enable = true,
 				lookahead = true,
 				keymaps = {
-					['ac'] = '@conditional.outer',
-					['ic'] = '@conditional.inner',
-					['af'] = '@function.outer',
-					['if'] = '@function.inner',
+					["ac"] = "@conditional.outer",
+					["ic"] = "@conditional.inner",
+					["af"] = "@function.outer",
+					["if"] = "@function.inner",
 				}
 			},
 		},

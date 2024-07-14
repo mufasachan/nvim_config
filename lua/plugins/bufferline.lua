@@ -1,12 +1,12 @@
-local plugin = { 'akinsho/bufferline.nvim' }
-plugin.name = 'bufferline'
+local plugin = { "akinsho/bufferline.nvim" }
+plugin.name = "bufferline"
 plugin.version = "*"
 
 plugin.depencies = {
 	{ "nvim-web-devicons" },
 }
 
-plugin.event = 'VeryLazy'
+plugin.event = "VeryLazy"
 
 plugin.opts = {
 	options = {
@@ -14,11 +14,11 @@ plugin.opts = {
 		themable = true,
 		numbers = "none",
 		close_command = "bdelete! %d",
-		buffer_close_icon = '󰅖',
-		modified_icon = '●',
-		close_icon = '',
-		left_trunc_marker = '',
-		right_trunc_marker = '',
+		buffer_close_icon = "󰅖",
+		modified_icon = "●",
+		close_icon = "",
+		left_trunc_marker = "",
+		right_trunc_marker = "",
 		max_name_length = 18,
 		max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
 		truncate_names = true, -- whether or not tab names should be truncated
@@ -39,7 +39,7 @@ plugin.opts = {
 		},
 		color_icons = true, -- whether or not to add the filetype icon highlights
 		get_element_icon = function(element)
-			local icon, hl = require('nvim-web-devicons').get_icon_by_filetype(element.filetype, { default = false })
+			local icon, hl = require("nvim-web-devicons").get_icon_by_filetype(element.filetype, { default = false })
 			return icon, hl
 		end,
 		show_buffer_icons = true, -- disable filetype icons for buffers
@@ -57,9 +57,9 @@ plugin.opts = {
 		hover = {
 			enabled = false,
 			delay = 200,
-			reveal = { 'close' }
+			reveal = { "close" }
 		},
-		sort_by = 'insert_after_current'
+		sort_by = "insert_after_current"
 	},
 	highlights = {
 		buffer = {
@@ -69,7 +69,7 @@ plugin.opts = {
 			italic = false
 		},
 		indicator_selected = {
-			fg = { attribute = 'fg', highlight = 'Function' },
+			fg = { attribute = "fg", highlight = "Function" },
 			italic = false
 		},
 		diagnostic_selected = { italic = false, },

@@ -1,12 +1,12 @@
-local plugin = {"luukvbaal/statuscol.nvim"}
+local plugin = { "luukvbaal/statuscol.nvim" }
 plugin.name = "statuscol"
 
 local function get_opts(builtin)
 	return {
 		relculright = true,
 		segments = {
-			{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-			{ text = { "%s" }, click = "v:lua.ScSa" },
+			{ text = { builtin.foldfunc },      click = "v:lua.ScFa" },
+			{ text = { "%s" },                  click = "v:lua.ScSa" },
 			{ text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
 		},
 	}

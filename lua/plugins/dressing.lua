@@ -1,17 +1,17 @@
-local plugin = { 'stevearc/dressing.nvim' }
+local plugin = { "stevearc/dressing.nvim" }
 
 plugin.opts = {
 	enabled = true,
 	input = {
 		mappings = {
 			i = {
-				['jk'] = '<Esc>'
+				["jk"] = "<Esc>"
 			},
 		},
 	},
 	select = {
 		telescope = {
-			layout_strategy = 'vertical',
+			layout_strategy = "vertical",
 			layout_config = {
 				height = .4,
 				width = .6,
@@ -21,4 +21,3 @@ plugin.opts = {
 }
 
 return plugin
-

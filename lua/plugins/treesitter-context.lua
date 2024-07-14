@@ -1,6 +1,6 @@
-local plugin = { 'nvim-treesitter/nvim-treesitter-context' }
+local plugin = { "nvim-treesitter/nvim-treesitter-context" }
 
-plugin.dependencies = { 'treesitter' }
+plugin.dependencies = { "treesitter" }
 
 function plugin.config()
 	vim.keymap.set("n", "gc", function()

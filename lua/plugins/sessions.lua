@@ -5,7 +5,7 @@ plugin.dependencies = { "telescope" }
 
 plugin.config = function()
 	local telescope = require "telescope"
-	telescope.load_extension('persisted')
+	telescope.load_extension("persisted")
 
 	vim.keymap.set("n", "<Leader>s", "<CMD>Telescope persisted<CR>", { desc = "Sessions", silent = true })
 

@@ -8,7 +8,7 @@ plugin.dependencies = {
 plugin.config = function()
 	require("fine-cmdline").setup()
 
-	vim.api.nvim_set_keymap('n', '<CR>', '<cmd>FineCmdline<CR>', { noremap = true })
+	vim.api.nvim_set_keymap("n", "<CR>", "<cmd>FineCmdline<CR>", { noremap = true })
 end
 
 return plugin

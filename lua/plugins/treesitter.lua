@@ -1,5 +1,5 @@
-local plugin = { 'nvim-treesitter/nvim-treesitter' }
-plugin.name = 'treesitter'
+local plugin = { "nvim-treesitter/nvim-treesitter" }
+plugin.name = "treesitter"
 
 plugin.build = {
 	build = ":TSUpdate",
@@ -18,7 +18,7 @@ plugin.opts = {
 		"json",
 		"python",
 		"yaml",
-		'lua'
+		"lua"
 	},
 	highlight = { enable = true },
 	incremental_selection = { enable = true },

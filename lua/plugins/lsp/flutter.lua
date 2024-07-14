@@ -30,15 +30,15 @@ local function on_attach()
 		local opts = { buffer = true, desc = desc }
 		vim.keymap.set(mode, lhs, rhs, opts)
 	end
-	bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
-	bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
-	bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
-	bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
-	bufmap('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
-	bufmap('n', 'gh', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
-	bufmap('n', '<leader>lr', '<cmd>lua vim.lsp.buf.rename()<cr>', 'Rename')
-	bufmap({ 'n', 'x' }, '<leader>lf', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', 'Format')
-	bufmap({ 'n', 'x' }, '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<cr>', 'Action')
+	bufmap("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>")
+	bufmap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>")
+	bufmap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>")
+	bufmap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>")
+	bufmap("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>")
+	bufmap("n", "gh", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
+	bufmap("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename")
+	bufmap({ "n", "x" }, "<leader>lf", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", "Format")
+	bufmap({ "n", "x" }, "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", "Action")
 end
 
 plugin.opts = {
