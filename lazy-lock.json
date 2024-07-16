@@ -14,6 +14,7 @@
   "handmade-hero-theme": { "branch": "main", "commit": "2c4be37f8a2f9aca9d9126290a09deb3e9f3461e" },
   "hererocks": { "branch": "master", "commit": "8bd2fcfdd65cfa7535ce39ea372a63b0bdb8e528" },
   "hippster_theme": { "branch": "main", "commit": "7946d1a195c66fed38b3e34f9fa8e0c5a2da0700" },
+  "illuminate": { "branch": "master", "commit": "5eeb7951fc630682c322e88a9bbdae5c224ff0aa" },
   "indent-blankline.nvim": { "branch": "master", "commit": "65e20ab94a26d0e14acac5049b8641336819dfc7" },
   "laserwave.nvim": { "branch": "main", "commit": "be386efd93cc4322cbe3c830524304f9c4193656" },
   "lazy.nvim": { "branch": "main", "commit": "1d451b4c2ce957da05e2123ce1a001804fc7ea96" },
