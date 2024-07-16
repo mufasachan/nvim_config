@@ -1,19 +1,29 @@
-local user = {}
-function user.setup_mason()
-	require("mason").setup({
-		ui = { border = "rounded" }
-	})
+local plugin = { "neovim/nvim-lspconfig" }
+plugin.name = "lspconfig"
 
-	require("mason-lspconfig").setup({
-		ensure_installed = {
-			-- 'lua_ls', System install
-			"pyright",
-			"taplo", -- TOML
-		}
-	})
+plugin.dependencies = {
+	"hrsh7th/cmp-nvim-lsp",
+	{ "williamboman/mason-lspconfig.nvim", lazy = true, dependencies = "mason" },
+	{ "williamboman/mason.nvim", name = "mason", opts = { ui = { border = "rounded" } },
+	},
+}
+
+plugin.cmd = "LspInfo"
+plugin.event = { "BufReadPre", "BufNewFile" }
+
+function plugin.init()
+	-- Prettier helps
+	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+		vim.lsp.handlers.hover,
+		{ border = "rounded" }
+	)
+	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+		vim.lsp.handlers.signature_help,
+		{ border = "rounded" }
+	)
 end
 
-function user.on_attach()
+local function lsp_keymaps()
 	require "which-key".register { ["<Leader>l"] = { name = "LSP", buffer = 0 } }
 	local bufmap = function(mode, lhs, rhs, desc)
 		local opts = { buffer = true, desc = desc }
@@ -32,59 +42,24 @@ function user.on_attach()
 	bufmap("n", "<leader>li", "<cmd>LspInfo<cr>", "Info")
 end
 
-local plugin = { "neovim/nvim-lspconfig" }
-plugin.name = "lspconfig"
-
-plugin.dependencies = {
-	"hrsh7th/cmp-nvim-lsp",
-	{ "williamboman/mason-lspconfig.nvim", lazy = true },
-	{
-		"williamboman/mason.nvim",
-		cmd = { "Mason", "LspInstall", "LspUninstall" },
-		keys = { { "<leader>M", "<cmd>Mason<CR>", desc = "Mason" } },
-		config = function() user.setup_mason() end
-	},
-}
-
-plugin.cmd = "LspInfo"
-plugin.event = { "BufReadPre", "BufNewFile" }
-
-function plugin.init()
-	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-		vim.lsp.handlers.hover,
-		{ border = "rounded" }
-	)
-
-	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-		vim.lsp.handlers.signature_help,
-		{ border = "rounded" }
-	)
-end
-
 function plugin.config()
 	local lspconfig = require "lspconfig"
 	local lsp_defaults = lspconfig.util.default_config
 
+	-- Set cmp capabilities to LSP default configs
 	lsp_defaults.capabilities = vim.tbl_deep_extend(
 		"force",
 		lsp_defaults.capabilities,
 		require "cmp_nvim_lsp".default_capabilities()
 	)
 
+	-- Set generic LSP mappings
 	local group = vim.api.nvim_create_augroup("lsp_cmds", { clear = true })
-
 	vim.api.nvim_create_autocmd("LspAttach", {
 		group = group,
-		desc = "LSP actions",
-		callback = user.on_attach
+		desc = "LSP keymaps",
+		callback = lsp_keymaps
 	})
-
-	require "mason-lspconfig".setup_handlers({
-		function(server)
-			lspconfig[server].setup({})
-		end,
-	})
-	require("plugins.lsp.lua_ls")
 end
 
 return plugin

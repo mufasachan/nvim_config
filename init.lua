@@ -17,3 +17,5 @@ require("user.plugins")
 require("user.settings")
 
 require("lazy").setup("plugins")
+
+require"after"
