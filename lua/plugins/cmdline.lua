@@ -5,7 +5,7 @@ plugin.dependencies = {
 	"MunifTanjim/nui.nvim"
 }
 
-local opts = {
+plugin.opts = {
 	hooks = {
 		after_mount = function(input)
 			vim.keymap.set("n", "q", "<CMD>q<CR>", { buffer = input.bufnr })
@@ -13,9 +13,18 @@ local opts = {
 	},
 	popup = { buf_options = { filetype = "FineCmdlinePrompt" } }
 }
-plugin.config = function()
-	require("fine-cmdline").setup(opts)
-	vim.keymap.set("n", "<CR>", "<CMD>FineCmdline<CR>")
+
+plugin.init = function()
+	local ft_excluded = { "qf" }
+	vim.api.nvim_create_autocmd({ "FileType" }, {
+		pattern = { "*" },
+		callback = function(ev)
+			local ft = ev.match
+			if not vim.list_contains(ft_excluded, ft) then
+				vim.keymap.set("n", "<CR>", "<CMD>FineCmdline<CR>", { buffer = ev.buf })
+			end
+		end
+	})
 end
 
 return plugin
