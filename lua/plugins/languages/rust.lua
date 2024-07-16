@@ -1,6 +1,7 @@
 local plugin = { "simrat39/rust-tools.nvim" }
 plugin.opts = {}
 
+-- Should be closer of the flutter on_attach, let's see next rust session.
 local function on_attach()
 	local group = vim.api.nvim_create_augroup("rust_cmds", { clear = true })
 	vim.api.nvim_create_autocmd("FileType", {

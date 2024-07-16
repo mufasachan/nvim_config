@@ -10,4 +10,3 @@ Arguably, my setup is (too) complicated. Specifically, `mason-lspconfig` have th
 
 Thus, the `plugins` remain, as far as I can, the location where plugins are configured. LSP, and other dev tools, should be configured else where, after the plugin init. 
 
-> **Note**: This is a working in progress, the folder `lua/plugins/lsp` should be discarded, some days.
