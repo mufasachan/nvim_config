@@ -24,7 +24,9 @@ function plugin.init()
 end
 
 local function lsp_keymaps()
-	require "which-key".register { ["<Leader>l"] = { name = "LSP", buffer = 0 } }
+	-- FIXME:
+	-- require "which-key".register { ["<Leader>l"] = { name = "LSP", buffer = 0 } }
+	require "which-key".add({ { "<Leader>l", buffer = 0, group = "LSP" }, })
 	local bufmap = function(mode, lhs, rhs, desc)
 		local opts = { buffer = true, desc = desc }
 		vim.keymap.set(mode, lhs, rhs, opts)

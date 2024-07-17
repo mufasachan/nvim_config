@@ -33,11 +33,15 @@ end
 local function set_lspkeymaps()
 	-- Keymappings for diagnostic
 	local wk = require "which-key"
-	wk.register({
-		["<Leader>t"] = { name = "Trouble" },
-		["<Leader>d"] = { name = "Diagnostics" },
-	})
-
+	-- wk.register({
+	-- 	["<Leader>t"] = { name = "Trouble" },
+	-- 	["<Leader>d"] = { name = "Diagnostics" },
+	-- })
+	-- DELETEME
+	wk.add({
+    { "<Leader>d", group = "Diagnostics" },
+    { "<Leader>t", group = "Trouble" },
+  })
 	local trouble = require "trouble"
 	-- Toggle trouble modes
 	mapmode("n", "<leader>td", "diagnostics", "Diagnostics", trouble)
@@ -134,7 +138,7 @@ plugin.opts = {
 		my_symbols = {
 			desc = "My document LSP symbols",
 			mode = "lsp_document_symbols",
-			focus = false,
+			focus = true,
 			win = {
 				type = "float",
 				relative = "editor",

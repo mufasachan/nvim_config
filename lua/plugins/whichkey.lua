@@ -1,28 +1,31 @@
 local plugin = { "folke/which-key.nvim" }
 plugin.name = "which-key"
 
--- Version 3.1 was not working, a lot of WK windows appeared, I do not like this.
 plugin.dependencies = { "nvim-web-devicons" }
-plugin.tag = "v2.0.1"
 
 plugin.init = function()
 	vim.o.timeout = true
 	vim.o.timeoutlen = 500
 
 	local wk = require "which-key"
-	wk.register({
-		["<Leader>b"] = { name = "Buffer" },
-		["<Leader>f"] = { name = "Finder" },
+	wk.add({
+		{ "<Leader>b", group = "Buffer" },
+		{ "<Leader>f", group = "Finder" },
 	})
 end
 
+---Disable unwanted triggers
+---@param ctx {keys: string, mode: string, plugin?: string}
+---@return boolean
+local function disable_triggers(ctx)
+	return (ctx.mode ~= "n") or (string.len(ctx.keys) ~= 7) or (ctx.keys:sub(1, 7) ~= "<Space>")
+end
 plugin.opts = {
-	-- preset = "modern",  To be enabled on version 3
+	preset = "modern",
 	delay = 200,
-	triggers = { "<Leader>", },
-	-- icons = { rules = false },  To be enabled on version 3
+	disable = { trigger = disable_triggers },
+	icons = { rules = false },
 }
-
 
 plugin.event = "VeryLazy"
 

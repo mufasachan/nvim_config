@@ -15,8 +15,12 @@ plugin.dependencies = {
 
 local function on_attach()
 	local wk = require "which-key"
-	wk.register({
-		["<Leader>L"] = { name = "Flutter" },
+	-- DELETEME
+	-- wk.register({
+	-- 	["<Leader>L"] = { name = "Flutter" },
+	-- })
+	wk.add({
+		{"<Leader>L",  name = "Flutter"},
 	})
 
 	vim.keymap.set("n", "<Leader>Lx", "<CMD>FlutterRun<CR>", { desc = "Run" })

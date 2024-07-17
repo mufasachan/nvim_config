@@ -46,5 +46,5 @@
   "ufo": { "branch": "main", "commit": "1b5f2838099f283857729e820cc05e2b19df7a2c" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
   "vimtex": { "branch": "master", "commit": "80c9bc179784c30192d482741a43f176c859daa1" },
-  "which-key": { "branch": "main", "commit": "0119a83f6cd097701ff13044be4e1effc8dffe02" }
+  "which-key": { "branch": "main", "commit": "f29387d82055b091564b33a805fec8f1b52b39f9" }
 }
