@@ -4,9 +4,6 @@ plugin.name = "which-key"
 plugin.dependencies = { "nvim-web-devicons" }
 
 plugin.init = function()
-	vim.o.timeout = true
-	vim.o.timeoutlen = 500
-
 	local wk = require "which-key"
 	wk.add({
 		{ "<Leader>b", group = "Buffer" },
@@ -14,16 +11,26 @@ plugin.init = function()
 	})
 end
 
----Disable unwanted triggers
----@param ctx {keys: string, mode: string, plugin?: string}
----@return boolean
-local function disable_triggers(ctx)
-	return (ctx.mode ~= "n") or (string.len(ctx.keys) ~= 7) or (ctx.keys:sub(1, 7) ~= "<Space>")
-end
 plugin.opts = {
 	preset = "modern",
 	delay = 200,
-	disable = { trigger = disable_triggers },
+	plugins = {
+		marks = false,
+		registers = false,
+		spelling = { enabled = false },
+		presets = {
+			operators = false,
+			motions = false,
+			text_objects = false,
+			windows = false,
+			nav = false,
+			z = false,
+			g = false,
+		},
+	},
+	triggers = {
+		{ "<Leader>", mode = {"n"}}
+	},
 	icons = { rules = false },
 }
 
