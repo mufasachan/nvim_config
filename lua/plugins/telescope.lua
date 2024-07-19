@@ -29,13 +29,6 @@ plugin.dependencies = {
 
 plugin.opts = {
 	defaults = {
-		layout_strategy = "vertical",
-		layout_config = {
-			width = 0.95,
-			height = 0.95,
-			preview_height = .55,
-			preview_cutoff = 0,
-		},
 		mappings = {
 			n = { ["q"] = "close" },
 			i = { ["kj"] = "close" },

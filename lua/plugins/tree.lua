@@ -1,67 +1,60 @@
-local map = vim.keymap.set
-local del = vim.keymap.del
-
 local plugin = { "nvim-tree/nvim-tree.lua" }
 plugin.name = "nvim-tree"
-
-plugin.dependencies = { "nvim-web-devicons" }
-
-plugin.keys = {
-	{ "<leader>e", ":NvimTreeToggle<cr>",         desc = "Open tree",                 silent = true },
-	{ "<leader>E", ":NvimTreeFindFileToggle<cr>", desc = "Open tree (focus on file)", silent = true },
-}
+plugin.dependencies = { "nvim-web-devicons", "which-key" }
 
 local function on_attach_tree(bufnr)
+	-- Set nvim-tree maps
 	local api = require "nvim-tree.api"
+	api.config.mappings.default_on_attach(bufnr)
 
-	local function opts(desc)
-		return {
+	local del = function(lhs) vim.keymap.del("n", lhs, { buffer = bufnr }) end
+	del("<2-LeftMouse>")
+	del("<2-RightMouse>")
+	del("y")
+	del("<")
+	del(">")
+	del("W")
+	del("<CR>")
+	del("<BS>")
+	del("e")
+	del("r")
+	del("<C-R>")
+	del("<Tab>")
+
+	local map = function(lhs, rhslua, desc)
+		vim.keymap.set("n", lhs, rhslua, {
 			desc = "nvim-tree: " .. desc,
 			buffer = bufnr,
 			noremap = true,
 			silent = true,
 			nowait = true
-		}
+		})
 	end
-
-	api.config.mappings.default_on_attach(bufnr)
-	del("n", "<2-LeftMouse>", { buffer = bufnr })
-	del("n", "<2-RightMouse>", { buffer = bufnr })
-	del("n", "y", { buffer = bufnr })
-	del("n", "<", { buffer = bufnr })
-	del("n", ">", { buffer = bufnr })
-	del("n", "W", { buffer = bufnr })
-	del("n", "<CR>", { buffer = bufnr })
-	del("n", "<BS>", { buffer = bufnr })
-	del("n", "e", { buffer = bufnr })
-	del("n", "r", { buffer = bufnr })
-	del("n", "<C-R>", { buffer = bufnr })
-
-	map("n", "l", api.node.open.edit, opts("Open"))
-	map("n", "e", api.node.open.edit, opts("Open"))
-	map("n", "rr", api.fs.rename, opts("Rename"))
-	map("n", "y", api.fs.copy.node, opts("Copy file"))
-	map("n", "re", api.fs.rename_basename, opts("Rename: Basename"))
-	map("n", "ro", api.fs.rename_sub, opts("Rename: Omit Filename"))
+	map("l", api.node.open.edit, "Open")
+	map("e", api.node.open.edit, "Open")
+	map("rr", api.fs.rename, "Rename")
+	map("y", api.fs.copy.node, "Copy file")
+	map("re", api.fs.rename_basename, "Rename basename")
+	map("ro", api.fs.rename_sub, "Rename omit filename")
 end
+
 plugin.opts = {
-	update_focused_file = {
-		enable = true,
-		update_root = true,
-	},
-	hijack_cursor = false,
-	on_attach = on_attach_tree,
-	sort_by = "case_sensitive",
-	view = { width = 30 },
-	renderer = { group_empty = true },
 	filters = { dotfiles = true },
+	on_attach = on_attach_tree,
+	renderer = { group_empty = true },
+	view = { width = 30 },
+	sync_root_with_cwd = true,
+	disable_netrw = true, -- netrw-noload
+	hijack_directories = { enable = false }, -- for auto-sessions
 }
 
-function plugin.config()
-	vim.g.loaded_netrw = 1
-	vim.g.loaded_netrwPlugin = 1
+function plugin.config(_, opts)
+	local api = require("nvim-tree.api")
+	require("which-key").add({
+		{ "<Leader>e", api.tree.toggle, desc = "Explorer", silent = true },
+	})
 
-	require("nvim-tree").setup(plugin.opts)
+	require("nvim-tree").setup(opts)
 end
 
 return plugin
