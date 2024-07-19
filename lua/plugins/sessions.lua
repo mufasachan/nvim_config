@@ -1,10 +1,21 @@
 local plugin = { "rmagatti/auto-session" }
 plugin.dependencies = { "telescope", "which-key", "nvim-tree" }
 
+local ignore_ft = function()
+	local ft = vim.api.nvim_get_option_value("ft", {})
+	local disabled_fts = { "gitcommit" }
+	for i = 1, #disabled_fts do
+		if disabled_fts[i] == ft then
+			return false
+		end
+	end
+	return true
+end
+
 plugin.opts = {
 	auto_restore_enabled = true,
 	auto_save_enabled = true,
-	args_allow_files_auto_save = true,
+	args_allow_files_auto_save = ignore_ft,
 }
 
 function plugin.config(_, opts)
@@ -21,8 +32,8 @@ function plugin.config(_, opts)
 			end
 		end
 	end
-	vim.api.nvim_create_autocmd({"VimEnter"}, {
-		callback = function () vim.defer_fn(close_dirbuffers, 1) end,
+	vim.api.nvim_create_autocmd({ "VimEnter" }, {
+		callback = function() vim.defer_fn(close_dirbuffers, 1) end,
 	})
 
 	require("which-key").add({
