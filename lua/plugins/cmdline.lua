@@ -36,7 +36,7 @@ plugin.init = function()
 		callback = function(ev)
 			local ft = ev.match
 			if not vim.list_contains(ft_excluded, ft) then
-				vim.keymap.set("n", "<CR>", "<CMD>FineCmdline<CR>", { buffer = ev.buf })
+				vim.keymap.set("n", "<Leader><Leader>", "<CMD>FineCmdline<CR>", { buffer = ev.buf, desc = "Command line"})
 			end
 		end
 	})
