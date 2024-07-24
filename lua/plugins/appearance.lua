@@ -1,13 +1,20 @@
 local function set_theme()
-	vim.cmd("colorscheme laserwave-hi_c")
+	vim.cmd.colorscheme("rose-pine")
+	vim.o.fillchars = "eob: "
 end
 
+local rose_pine_opts = {
+	variante = "moon",
+	highlight_groups = {
+		DashboardHeader = { fg = "gold" },
+		DashboardIcon = { fg = "rose" },
+		DashboardDesc = { fg = "rose" },
+		DashboardKey = { fg = "iris" },
+	},
+}
+
 return {
-	{ "lettertwo/laserwave.nvim",     priority = 1000 },                         -- <3/10
-	{ "M1nts02/akane.nvim",           priority = 1000 },                         -- 8 /10
-	{ "luisiacc/handmade-hero-theme", priority = 1000 },                         -- 8 /10
-	{ "pauchiner/pastelnight.nvim",   priority = 1000 },                         -- 7 /10
-	{ "savq/melange-nvim",            priority = 1000 },                         -- 7 /10
-	{ "folke/tokyonight.nvim",        priority = 1000, config = set_theme },     -- solid
-	{ "catppuccin/nvim",              priority = 1000, name = "hippster_theme" }, -- Do not have MacOS
+	{ "rose-pine/neovim",      priority = 1000, name = "rose-pine", opts = rose_pine_opts },
+	{ "rebelot/kanagawa.nvim", priority = 1000 },
+	{ "folke/tokyonight.nvim", priority = 1000, config = set_theme },
 }
