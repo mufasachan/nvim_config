@@ -43,6 +43,13 @@ plugin.opts = {
 				action = "SessionManager load_session"
 			},
 			{
+				icon = "󰒲",
+				desc = " Plugins",
+				key = "p",
+				key_format = "%s",
+				action = "Lazy",
+			},
+			{
 				icon = "",
 				desc = " Settings",
 				key = ",",
