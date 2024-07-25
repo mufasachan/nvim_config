@@ -14,11 +14,11 @@ plugin.opts = {
 			vim.keymap.set("i", "<C-e>", "<C-o>$", { buffer = input.bufnr })
 		end
 	},
-	popup = {
+	popup = { -- nui style, see fine-cmdline documentation
 		buf_options = { filetype = "FineCmdlinePrompt" },
-		position = { row = "1%" },
+		position = { row = "5%" },
+		relative = "editor",
 		border = {
-			padding = { 0, 0 },
 			text = {
 				top = ">>",
 				top_align = "left",
@@ -36,7 +36,7 @@ plugin.init = function()
 		callback = function(ev)
 			local ft = ev.match
 			if not vim.list_contains(ft_excluded, ft) then
-				vim.keymap.set("n", "<Leader><Leader>", "<CMD>FineCmdline<CR>", { buffer = ev.buf, desc = "Command line"})
+				vim.keymap.set("n", "<Leader><Leader>", "<CMD>FineCmdline<CR>", { buffer = ev.buf, desc = "Command line" })
 			end
 		end
 	})
