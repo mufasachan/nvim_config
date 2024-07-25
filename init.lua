@@ -3,9 +3,6 @@
 -- ThePrimeagen/vim-be-good: Game to be better at nvim
 -- TODOs:
 -- - Set python configuration with tools in the local env (not **Mason**)
--- - Add project feature
--- 		- Proper workspace listing that can be resumed
--- 		- Sort of welcome pane when opening neovim with no argument.
 
 require("user.autocommands")
 require("user.ft")

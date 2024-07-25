@@ -1,46 +1,27 @@
-local plugin = { "rmagatti/auto-session" }
-plugin.dependencies = { "telescope", "which-key", "nvim-tree" }
-
-local ignore_ft = function()
-	local ft = vim.api.nvim_get_option_value("ft", {})
-	local disabled_fts = { "gitcommit" }
-	for i = 1, #disabled_fts do
-		if disabled_fts[i] == ft then
-			return false
-		end
-	end
-	return true
-end
+-- Also see welcome.lua module for setting of "startup loading"
+-- dashboard is coupled between its start and set its opts.
+-- Thus, the VimEnter loading is defined there.
+local plugin = { "Shatur/neovim-session-manager" }
+plugin.dependencies = { "plenary", "which-key" }
 
 plugin.opts = {
-	auto_restore_enabled = true,
-	auto_save_enabled = true,
-	args_allow_files_auto_save = ignore_ft,
+	autosave_ignore_filetypes = {
+		"gitcommit",
+		"gitrebase",
+		"dashboard",
+		"NvimTree"
+	},
 }
 
 function plugin.config(_, opts)
-	vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
-	local search_sessions = require("auto-session.session-lens").search_session
-
-	-- Thanks https://github.com/rmagatti/auto-session/issues/206#issuecomment-2057534051
-	local close_dirbuffers = function()
-		local buffers = vim.api.nvim_list_bufs()
-		for i = 1, #buffers do
-			local buffer_name = vim.api.nvim_buf_get_name(buffers[i])
-			if vim.fn.isdirectory(buffer_name) == 1 then
-				vim.api.nvim_buf_delete(buffers[i], { force = true })
-			end
-		end
-	end
-	vim.api.nvim_create_autocmd({ "VimEnter" }, {
-		callback = function() vim.defer_fn(close_dirbuffers, 1) end,
-	})
+	local config = require("session_manager.config")
+	opts.autoload_mode = { config.AutoloadMode.Disabled }
 
 	require("which-key").add({
-		{ "<Leader>s", search_sessions, desc = "Sessions" },
+		{ lhs = "<Leader>s", rhs = "<CMD>SessionManager load_session<CR>", desc = "Sessions", silent = true }
 	})
 
-	require("auto-session").setup(opts)
+	require("session_manager").setup(opts)
 end
 
 return plugin
