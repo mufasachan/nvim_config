@@ -2,7 +2,13 @@
 -- m4xshen/hardtime.nvim: Better habits
 -- ThePrimeagen/vim-be-good: Game to be better at nvim
 -- TODOs:
--- - Set python configuration with tools in the local env (not **Mason**)
+-- - (Major) Set python configuration with tools in the local env (not **Mason**)
+--   1. Do it manually for a local repo
+--   2. Do it manually for a local repo in a container
+--   3. Is scripting/plugin necessary?
+-- - (Major) Set DAP, an UI and test it on a real world project
+-- - (Medium) TODO and other tags search with Telescope
+-- - (Minor) No cursor in dash
 
 require("user.autocommands")
 require("user.ft")
