@@ -88,8 +88,6 @@ function plugin.config(_, opts)
 		end
 	end
 	vim.api.nvim_create_autocmd("VimEnter", {
-		-- Note: dashboard is automatically enabled when its `setup` is called.
-		-- Namely, it sets a UIEnter autocommand, it forces me to handle eveything here.
 		callback = function() vim.defer_fn(callback, 1) end
 	})
 end
