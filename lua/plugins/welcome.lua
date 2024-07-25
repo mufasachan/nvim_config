@@ -66,9 +66,21 @@ plugin.opts = {
 	}
 }
 
+local function savebuffers_and_opendashboard()
+	-- Save current session, close everything and open dashboard
+	vim.cmd("SessionManager save_current_session")
+
+	local ids_buffers = vim.api.nvim_list_bufs()
+	for i = 1, #ids_buffers do
+		vim.api.nvim_buf_delete(ids_buffers[i], { force = true })
+	end
+
+	vim.cmd("Dashboard")
+end
+
 function plugin.config(_, opts)
 	require("which-key").add({
-		{ lhs = "<Leader>H", rhs = "<CMD>Dashboard<CR>", desc = "Home ...", silent = true }
+		{ lhs = "<Leader>H", rhs = savebuffers_and_opendashboard, desc = "Home", silent = true }
 	})
 
 
