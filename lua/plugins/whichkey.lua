@@ -29,7 +29,7 @@ plugin.opts = {
 		},
 	},
 	triggers = {
-		{ "<Leader>", mode = {"n"}}
+		{ "<Leader>", mode = { "n" } }
 	},
 	icons = { rules = false },
 }
