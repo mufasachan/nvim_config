@@ -17,8 +17,6 @@ plugin.dependencies = {
 	{ "rafamadriz/friendly-snippets" },
 }
 
-plugin.event = "InsertEnter"
-
 function plugin.opts(_, opts)
 	opts.sources = {
 		-- Special source for lua/nvim dev
@@ -106,7 +104,9 @@ end
 function plugin.config(_, opts)
 	vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
-	require("luasnip.loaders.from_vscode").lazy_load()
+	-- lazy_load change the time the snippets are loaded, namely when BufEnter I guess
+	-- For some setup, tex ftplugin for instance, it's better if it's loaded normally.
+	require("luasnip.loaders.from_vscode").load()
 
 
 	require("cmp").setup(opts)

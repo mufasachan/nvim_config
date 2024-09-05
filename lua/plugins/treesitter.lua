@@ -20,6 +20,7 @@ plugin.opts = {
 		"yaml",
 		"lua"
 	},
+	ignore_install = { "latex" },
 	highlight = { enable = true },
 	incremental_selection = { enable = true },
 	textobjects = { enable = true },
