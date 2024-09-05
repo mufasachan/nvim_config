@@ -43,6 +43,13 @@ plugin.opts = {
 				action = "SessionManager load_session"
 			},
 			{
+				icon = "",
+				desc = " Go to folder ...",
+				key = "f",
+				key_format = "%s",
+				action = "FineCmdline cd "
+			},
+			{
 				icon = "󰒲",
 				desc = " Plugins",
 				key = "p",
@@ -73,6 +80,19 @@ plugin.opts = {
 	}
 }
 
+-- Copy/paste/adapted from dashboard 
+-- fabf5feec96185817c732d47d363f34034212685
+-- TODO: Disable illuminate and/or just the hl group for the line for the current buffer only.
+-- only commit when it's done
+local function disable_move_and_cursor()
+	-- No move
+  local keys = { 'w', 'f', 'b', 'h', 'j', 'k', 'l', '<Up>', '<Down>', '<Left>', '<Right>' }
+  vim.tbl_map(function(key)
+		vim.api.nvim_buf_set_keymap(0, "n", key, "<NOP>", {})
+  end, keys)
+end
+
+
 local function savebuffers_and_opendashboard()
 	-- Save current session, close everything and open dashboard
 	vim.cmd("SessionManager save_current_session")
@@ -90,6 +110,7 @@ function plugin.config(_, opts)
 		{ lhs = "<Leader>H", rhs = savebuffers_and_opendashboard, desc = "Home", silent = true }
 	})
 
+	local id_group = vim.api.nvim_create_augroup("Startup", {})
 
 	local callback = function(_)
 		-- Dashboard is used when no argument
@@ -107,7 +128,14 @@ function plugin.config(_, opts)
 		end
 	end
 	vim.api.nvim_create_autocmd("VimEnter", {
-		callback = function() vim.defer_fn(callback, 1) end
+		callback = function() vim.defer_fn(callback, 1) end,
+		group = id_group,
+	})
+
+	vim.api.nvim_create_autocmd("FileType", {
+		pattern="dashboard",
+		callback = disable_move_and_cursor,
+		group = id_group,
 	})
 end
 
