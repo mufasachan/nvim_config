@@ -36,6 +36,10 @@ vim.keymap.set("n", "<C-h>", "<C-w>h", { remap = true })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { remap = true })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { remap = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { remap = true })
+vim.keymap.set("n", "<C-Left>", "<C-w>h", { remap = true })
+vim.keymap.set("n", "<C-Down>", "<C-w>j", { remap = true })
+vim.keymap.set("n", "<C-Up>", "<C-w>k", { remap = true })
+vim.keymap.set("n", "<C-Right>", "<C-w>l", { remap = true })
 
 -- Move Lines
 vim.keymap.set("n", "<A-j>", "<cmd>m .+1<cr>==", { silent = true })
