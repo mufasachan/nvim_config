@@ -26,3 +26,5 @@ end
 -- TODO add a loop of all installed lsp and initiate them if they have a matching filenames or not.
 -- Custom configurations
 require("after.lsp.lua_ls")
+require("after.lsp.ltex")
+-- require("after.lsp.python")

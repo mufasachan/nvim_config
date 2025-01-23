@@ -15,7 +15,7 @@ local function get_snippet_from_name(name)
 end
 
 --- @type string[]
-local names = { "textit" }
+local names = { "textbf", "textit", "cite" }
 --- @type table<string, function>
 local name_to_expand_func = {}
 for _, name in ipairs(names) do
@@ -24,22 +24,20 @@ for _, name in ipairs(names) do
 	end
 end
 
+local function create_insert_wk_table(lhs, name)
+	return { mode = "i", lhs = lhs, rhs = name_to_expand_func[name], buffer = 0 }
+end
+
 local wk = require "which-key"
 wk.add({
 	{ lhs = "<Leader>v",  group = "VimTex",                 buffer = 0 },
-	{ lhs = "<Leader>vc", rhs = "<CMD>VimtexCompile<CR>",   buffer = 0 },
-	{ lhs = "<Leader>vt", rhs = "<CMD>VimtexTocToggle<CR>", buffer = 0 },
-	{
-		mode = "i",
-		lhs = "/i",
-		rhs = name_to_expand_func["textit"],
-		buffer = 0
-	}
+	{ lhs = "<Leader>vc", rhs = "<CMD>VimtexCompile<CR>",   buffer = 0, desc = "Toggle compile" },
+	{ lhs = "<Leader>vt", rhs = "<CMD>VimtexTocToggle<CR>", buffer = 0, desc = "Table des matières"},
+	{ lhs = "<Leader>vv", rhs = "<CMD>VimtexView<CR>", buffer = 0, desc = "Voir PDF"},
+	{ mode = "i",         lhs = "/-",                       rhs = "\\item ",            buffer = 0 },
+	{ mode = "i",         lhs = "<C-Enter>",                rhs = "\\\\<Enter><Enter>", buffer = 0 },
+	create_insert_wk_table("/i", "textit"),
+	create_insert_wk_table("/b", "textbf"),
+	create_insert_wk_table("/c", "cite"),
 })
 
-vim.call("vimtex#imaps#add_map", {
-	lhs = "-",
-	rhs = "\\item ",
-	wrapper = "vimtex#imaps#wrap_trivial",
-	leader = "/"
-})
