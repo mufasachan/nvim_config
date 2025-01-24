@@ -23,8 +23,8 @@ function plugin.opts(_, opts)
 		{ name = "lazydev", group_index = 0 },
 		{ name = "path" },
 		{ name = "nvim_lsp" },
-		{ name = "buffer",  keyword_length = 3 },
 		{ name = "luasnip", keyword_length = 2 },
+		{ name = "buffer",  keyword_length = 3 },
 	}
 	opts.formatting = {
 		fields = { "menu", "abbr", "kind" },
