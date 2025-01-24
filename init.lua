@@ -19,4 +19,5 @@ require("user.settings")
 
 require("lazy").setup("plugins")
 
-require"after"
+local utils = require("user.utils")
+utils.load_modules_in_directory("after/lsp")
