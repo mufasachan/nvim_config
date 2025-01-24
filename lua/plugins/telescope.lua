@@ -36,7 +36,7 @@ plugin.opts = {
 	},
 	pickers = {
 		find_files = {
-			find_command = { "fdfind", "-H", "-I", "--exclude", ".git", "--type", "f" },
+			find_command = { "fd", "-H", "-I", "--exclude", ".git", "--type", "f" },
 		}
 	},
 }
