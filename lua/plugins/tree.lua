@@ -42,7 +42,7 @@ plugin.opts = {
 	filters = { dotfiles = true },
 	on_attach = on_attach_tree,
 	renderer = { group_empty = true },
-	view = { width = 30 },
+	view = { side = 'right', width = 30 },
 	sync_root_with_cwd = true,
 	disable_netrw = true, -- netrw-noload
 	hijack_directories = { enable = false }, -- for auto-sessions
