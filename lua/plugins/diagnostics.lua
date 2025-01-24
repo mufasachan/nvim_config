@@ -16,44 +16,40 @@ local function maplua(mode, lhs, rhs_lua, desc)
 		{ desc = desc, callback = rhs_lua })
 end
 
---- Utils command for mapping action on Trouble's modes
---- @param mode string Vim mode
---- @param lhs string
---- @param modetrouble string
---- @param desc string
---- @param trouble table
-local function mapmode(mode, lhs, modetrouble, desc, trouble)
-	local rhs_lua = function()
-		trouble.toggle(modetrouble)
-	end
-	maplua(mode, lhs, rhs_lua, desc)
-end
-
 --- To be called when Trouble is useful, i.e. LspAttach
 local function set_lspkeymaps()
 	-- Keymappings for diagnostic
-	local wk = require "which-key"
-	-- wk.register({
-	-- 	["<Leader>t"] = { name = "Trouble" },
-	-- 	["<Leader>d"] = { name = "Diagnostics" },
-	-- })
-	-- DELETEME
-	wk.add({
-    { "<Leader>d", group = "Diagnostics" },
-    { "<Leader>t", group = "Trouble" },
-  })
 	local trouble = require "trouble"
+	local wk = require "which-key"
+	wk.add({
+		{ lhs = "<Leader>d",  group = "Diagnostics" },
+		{ lhs = "<Leader>t",  group = "Trouble" },
+		{ lhs = "<Leader>dq", rhs = "<CMD>Trouble qflist focus=1<CR>", desc = "qflist" },
+	})
+
+	--- Utils command for mapping action on Trouble's modes
+	--- @param mode string Vim mode
+	--- @param lhs string
+	--- @param modetrouble string
+	--- @param desc string
+	local function mapmode(mode, lhs, modetrouble, desc)
+		local rhs_lua = function()
+			trouble.toggle(modetrouble)
+		end
+		maplua(mode, lhs, rhs_lua, desc)
+	end
 	-- Toggle trouble modes
-	mapmode("n", "<leader>td", "diagnostics", "Diagnostics", trouble)
-	mapmode("n", "<leader>ts", "my_symbols", "Symbols", trouble)
-	mapmode("n", "<leader>td", "lsp_definitions", "Definition", trouble)
-	mapmode("n", "<leader>tr", "lsp_references", "Definition", trouble)
-	mapmode("n", "<leader>tT", "lsp_type_definitions", "Definition", trouble)
-	mapmode("n", "<leader>ta", "my_lsp", "Show all", trouble)
+	mapmode("n", "<leader>dd", "diagnostics", "Diagnostics")
+	mapmode("n", "<leader>ts", "my_symbols", "Symbols")
+	mapmode("n", "<leader>td", "lsp_definitions", "Definition")
+	mapmode("n", "<leader>tr", "lsp_references", "Definition")
+	mapmode("n", "<leader>tT", "lsp_type_definitions", "Definition")
+	mapmode("n", "<leader>ta", "my_lsp", "Show all")
 	maplua("n", "<leader>tt", trouble.focus, "Focus")
 	maplua("n", "<leader>tc", trouble.close, "Close")
 	-- Navigation
 	maplua("n", "<leader>dn", vim.diagnostic.goto_next, "Next")
+	maplua("n", "<leader>ds", vim.diagnostic.open_float, "Show (current)")
 	maplua("n", "<leader>dp", vim.diagnostic.goto_prev, "Previous")
 end
 
