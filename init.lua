@@ -17,7 +17,7 @@ require("user.neovide")
 require("user.plugins")
 require("user.settings")
 
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", { rocks = { hererocks = true } })
 
 local utils = require("user.utils")
 utils.load_modules_in_directory("after/lsp")

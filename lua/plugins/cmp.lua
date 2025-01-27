@@ -23,6 +23,7 @@ function plugin.opts(_, opts)
 		{ name = "lazydev", group_index = 0 },
 		{ name = "path" },
 		{ name = "nvim_lsp" },
+		{ name = "neorg" },
 		{ name = "luasnip", keyword_length = 2 },
 		{ name = "buffer",  keyword_length = 3 },
 	}
