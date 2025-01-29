@@ -6,3 +6,21 @@ wk.add({
 	{ lhs = "<leader>Nf", rhs = "<Plug>(neorg.telescope.find_norg_files)", desc = "Find files" },
 	{ lhs = "<C-l>", rhs = "<CMD>Telescope neorg insert_file_link<CR>", mode = "i", desc = "Insert link" },
 })
+
+local ls = require("luasnip")
+local s = ls.snippet
+local t = ls.text_node
+local i = ls.insert_node
+
+local bold_snippet = s("md_bold", {
+  t("*"),
+  i(1),
+  t("* "),
+  i(2),
+})
+
+ls.add_snippets("markdown", { bold_snippet })
+
+vim.keymap.set("i", "<C-b>", function()
+  ls.snip_expand(bold_snippet)
+end, { buffer = true })
