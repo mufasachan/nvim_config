@@ -15,7 +15,7 @@ require("user.ft")
 require("user.keymappings")
 require("user.neovide")
 require("user.plugins")
-require("user.settings")
+require("user.options")
 
 require("lazy").setup("plugins", { rocks = { hererocks = true } })
 
