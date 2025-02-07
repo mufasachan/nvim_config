@@ -21,8 +21,9 @@ local insert = ls.insert_node
 
 local bold_snippet = snippet("bold", {
 	text("*"),
-	insert(1),
+	insert(1, "bold text"),
 	text("*"),
+	insert(0)
 })
 
 local url_snippet = snippet("url", {
