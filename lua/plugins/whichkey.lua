@@ -6,7 +6,6 @@ plugin.dependencies = { "nvim-web-devicons" }
 plugin.init = function()
 	local wk = require "which-key"
 	wk.add({
-		{ "<Leader>b", group = "Buffer" },
 		{ "<Leader>f", group = "Finder" },
 	})
 end

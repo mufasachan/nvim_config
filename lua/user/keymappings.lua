@@ -53,9 +53,6 @@ vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv", { silent = true })
 vim.keymap.set("n", "<Leader>q", ":q<CR>", { desc = "Quit" })
 vim.keymap.set("n", "<Leader>Q", ":qa<CR>", { desc = "Quit all" })
 vim.keymap.set("n", "<leader>w", "<cmd>write<cr>", { desc = "Save" })
--- Commands: Buffer
-vim.keymap.set("n", "<Leader>c", "<cmd>bp|bd#<cr>", { desc = "Close buffer" })
-vim.keymap.set("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Back", silent = true })
 -- Commands: Help page
 vim.keymap.set("x", "H", '"xy:help <C-R>x<CR>',
 	{ desc = "Back", silent = true, noremap = true })
