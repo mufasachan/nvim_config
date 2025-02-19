@@ -15,3 +15,5 @@ vim.o.expandtab = true
 vim.o.signcolumn = "yes"
 vim.o.helpheight = 42
 vim.o.showmode = false
+
+vim.o.exrc = true
