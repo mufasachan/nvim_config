@@ -1,7 +1,56 @@
 vim.o.conceallevel = 2
 
+-- Keyboard shortcut with snippet for insert mode.
 local ls = require("luasnip")
+local snippet = ls.snippet
+local text = ls.text_node
+local insert = ls.insert_node
 local snippets_tex = ls.get_snippets("tex", { type = "snippets" })
+
+
+local csu_snippet = snippet("dataset_dt", {
+	text("CUHK-SYSU-PEDES"),
+	insert(0)
+})
+table.insert(snippets_tex, csu_snippet)
+local pedes_snippet = snippet("dataset_d", {
+	text("CUHK-SYSU"),
+	insert(0)
+})
+table.insert(snippets_tex, pedes_snippet)
+local sysu_snippet = snippet("dataset_t", {
+	text("CUHK-PEDES"),
+	insert(0)
+})
+table.insert(snippets_tex, sysu_snippet)
+local parencite_snippet = snippet("parencite", {
+	text("\\parencite{"),
+	insert(1, "citekey"),
+	text("}"),
+	insert(0)
+})
+table.insert(snippets_tex, parencite_snippet)
+local cite_snippet = snippet("cite", {
+	text("\\cite{"),
+	insert(1, "citekey"),
+	text("}"),
+	insert(0)
+})
+table.insert(snippets_tex, cite_snippet)
+local mono_snippet = snippet("mono", {
+	text("\\texttt{"),
+	insert(1, "text"),
+	text("}"),
+	insert(0)
+})
+table.insert(snippets_tex, mono_snippet)
+local gls_snippet = snippet("gls", {
+	text("\\gls{"),
+	insert(1, "abbrv"),
+	text("}"),
+	insert(0)
+})
+table.insert(snippets_tex, gls_snippet)
 
 --- Get a luasnip for each name
 ---@param name string
@@ -15,7 +64,7 @@ local function get_snippet_from_name(name)
 end
 
 --- @type string[]
-local names = { "textbf", "textit", "cite" }
+local names = { "textbf", "textit", "cite", "parencite", "gls", "dataset_d", "dataset_t", "dataset_dt", "mono"}
 --- @type table<string, function>
 local name_to_expand_func = {}
 for _, name in ipairs(names) do
@@ -39,5 +88,11 @@ wk.add({
 	create_insert_wk_table("/i", "textit"),
 	create_insert_wk_table("/b", "textbf"),
 	create_insert_wk_table("/c", "cite"),
+	create_insert_wk_table("/(", "parencite"),
+	create_insert_wk_table("/ ", "gls"),
+	create_insert_wk_table("/t", "mono"),
+	create_insert_wk_table("/dd", "dataset_d"),
+	create_insert_wk_table("/dt", "dataset_t"),
+	create_insert_wk_table("/dc", "dataset_dt"),
 })
 
