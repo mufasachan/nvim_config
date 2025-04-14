@@ -10,20 +10,20 @@ plugin.dependencies = {
 plugin.cmd = "LspInfo"
 plugin.event = { "BufReadPre", "BufNewFile" }
 
-local function lsp_keymaps()
-  require "which-key".add({
-    { "<Leader>F", function() vim.lsp.buf.format({ async = true }) end, buffer = 0, desc = "Format" },
-  })
-end
-
 function plugin.config()
-  local lspconfig = require "lspconfig"
+  local function lsp_keymaps()
+    require "which-key".add({
+      { "gd", vim.lsp.buf.definition, buffer = 0},
+      { "gD", vim.lsp.buf.declaration, buffer = 0},
+      { "<Leader>F", function() vim.lsp.buf.format({ async = true }) end, buffer = 0, desc = "Format" },
+    })
+  end
 
   -- All Mason-installed LSP are enabled by default
   require("mason-lspconfig").setup_handlers {
-      function (server_name)
-        vim.lsp.enable(server_name)
-      end,
+    function(server_name)
+      vim.lsp.enable(server_name)
+    end,
   }
 
   -- Set generic LSP mappings
