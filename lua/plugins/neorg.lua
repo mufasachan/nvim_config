@@ -22,12 +22,12 @@ local opts = {
 				default_workspace = "main"
 			}
 		},
-		["core.completion"] = {
-			config = {
-				engine = "nvim-cmp",
-			}
-		},
-		["core.integrations.nvim-cmp"] = {},
+		-- ["core.completion"] = {
+		-- 	config = {
+		-- 		engine = "nvim-cmp",
+		-- 	}
+		-- },
+		-- ["core.integrations.nvim-cmp"] = {},
 		["core.integrations.telescope"] = {},
 		["core.integrations.image"] = {},
 	}

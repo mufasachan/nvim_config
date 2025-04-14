@@ -19,9 +19,10 @@ require("user.options")
 
 require("lazy").setup("plugins", { rocks = { hererocks = true } })
 
-local utils = require("user.utils")
-utils.load_modules_in_directory("after/lsp")
+-- local utils = require("user.utils")
+-- utils.load_modules_in_directory("after/lsp")
 
 -- with alacritty bloodmoon theme
-vim.cmd.colorscheme("carbonfox")
+-- vim.cmd.colorscheme("carbonfox")
+vim.cmd.colorscheme("rose-pine")
 vim.o.fillchars = "eob: "

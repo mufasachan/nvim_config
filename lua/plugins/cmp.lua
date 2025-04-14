@@ -1,116 +1,43 @@
-local plugin = { "hrsh7th/nvim-cmp" }
+local M = { 'saghen/blink.cmp'}
 
-plugin.dependencies = {
-	-- Sources
-	{ "hrsh7th/cmp-buffer" },
-	{ "hrsh7th/cmp-path" },
-	{ "saadparwaiz1/cmp_luasnip" },
+-- optional: provides snippets for the snippet source
+M.dependencies = { 'rafamadriz/friendly-snippets' }
+  ---@module 'blink.cmp'
+  ---@type blink.cmp.Config
+M.opts = {
+  -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
+  -- 'super-tab' for mappings similar to vscode (tab to accept)
+  -- 'enter' for enter to accept
+  -- 'none' for no mappings
+  -- All presets have the following mappings :h blink-cmp-config-keymap 
+  -- C-space: Open menu or open docs if already open
+  -- C-n/C-p or Up/Down: Select next/previous item
+  -- C-e: Hide menu
+  -- C-k: Toggle signature help (if signature.enabled = true)
+  keymap = { preset = 'enter' },
 
-	-- Snippets
-	{
-		"L3MON4D3/LuaSnip",
-		-- Replace <CurrentMajor> by the latest released major (first number of latest release)
-		version = "v2.*",
-		-- install jsregexp (optional!).
-		build = "make install_jsregexp"
-	},
-	{ "rafamadriz/friendly-snippets" },
+  appearance = {
+    -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+    -- Adjusts spacing to ensure icons are aligned
+    nerd_font_variant = 'mono'
+  },
+
+  -- (Default) Only show the documentation popup when manually triggered
+  completion = { documentation = { auto_show = false } },
+
+  -- Default list of enabled providers defined so that you can extend it
+  -- elsewhere in your config, without redefining it, due to `opts_extend`
+  sources = {
+    default = { 'lsp', 'path', 'snippets', 'buffer' },
+  },
+  signature = { enabled = true },
+  -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
+  -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
+  -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
+  --
+  -- See the fuzzy documentation for more information
+  fuzzy = { implementation = "prefer_rust_with_warning" }
 }
+M.opts_extend = { "sources.default" }
 
-function plugin.opts(_, opts)
-	opts.sources = {
-		-- Special source for lua/nvim dev
-		{ name = "lazydev", group_index = 0 },
-		{ name = "path" },
-		{ name = "nvim_lsp" },
-		{ name = "neorg" },
-		{ name = "luasnip", keyword_length = 2 },
-		{ name = "buffer",  keyword_length = 3 },
-	}
-	opts.formatting = {
-		fields = { "menu", "abbr", "kind" },
-		format = function(entry, item)
-			local menu_icon = {
-				nvim_lsp = "λ",
-				luasnip = "⋗",
-				buffer = "Ω",
-				path = "🖫",
-			}
-
-			item.menu = menu_icon[entry.source.name]
-			return item
-		end,
-	}
-
-	local luasnip = require("luasnip")
-	opts.snippet = {
-		expand = function(args)
-			luasnip.lsp_expand(args.body)
-		end
-	}
-
-	local cmp = require("cmp")
-	opts.window = {
-		completion = cmp.config.window.bordered(),
-		documentation = cmp.config.window.bordered(),
-	}
-
-	local select_opts = { behavior = cmp.SelectBehavior.Select }
-	opts.mapping = {
-		["<C-u>"] = cmp.mapping.scroll_docs(-4),
-		["<C-d>"] = cmp.mapping.scroll_docs(4),
-
-		["<C-e>"] = cmp.mapping.abort(),
-		["<C-x>"] = cmp.mapping.complete(),
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
-
-		-- Snippet navigation in placeholders
-		["<C-f>"] = cmp.mapping(function(fallback)
-			if luasnip.jumpable(1) then
-				luasnip.jump(1)
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-		["<C-b>"] = cmp.mapping(function(fallback)
-			if luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-
-		-- Useful tab in cmp menu
-		["<Tab>"] = cmp.mapping(function(fallback)
-			local col = vim.fn.col(".") - 1
-
-			if cmp.visible() then
-				cmp.select_next_item(select_opts)
-			elseif col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
-				fallback()
-			else
-				cmp.complete()
-			end
-		end, { "i", "s" }),
-		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item(select_opts)
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-	}
-end
-
-function plugin.config(_, opts)
-	vim.opt.completeopt = { "menu", "menuone", "noselect" }
-
-	-- lazy_load change the time the snippets are loaded, namely when BufEnter I guess
-	-- For some setup, tex ftplugin for instance, it's better if it's loaded normally.
-	require("luasnip.loaders.from_vscode").load()
-
-
-	require("cmp").setup(opts)
-end
-
-return plugin
+return M

@@ -1,5 +1,6 @@
 local rose_pine_opts = {
 	variante = "moon",
+  styles = { transparency = true },
 	highlight_groups = {
 		DashboardHeader = { fg = "gold" },
 		DashboardIcon = { fg = "rose" },

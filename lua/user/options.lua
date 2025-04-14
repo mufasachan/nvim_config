@@ -7,6 +7,8 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.hlsearch = false
 
+vim.o.winborder = 'rounded'
+
 vim.o.wrap = true
 vim.o.breakindent = true
 vim.o.tabstop = 2
