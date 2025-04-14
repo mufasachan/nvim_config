@@ -18,7 +18,6 @@ end
 
 function plugin.config()
   local lspconfig = require "lspconfig"
-  local lsp_defaults = lspconfig.util.default_config
 
   -- All Mason-installed LSP are enabled by default
   require("mason-lspconfig").setup_handlers {

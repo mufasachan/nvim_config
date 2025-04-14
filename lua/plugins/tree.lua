@@ -51,6 +51,7 @@ function plugin.config(_, opts)
 	local api = require("nvim-tree.api")
 	require("which-key").add({
 		{ "<Leader>e", api.tree.toggle, desc = "Explorer", silent = true },
+    { "<Leader>E", function () api.tree.toggle({find_file=true}) end, desc = "Explorer", silent = true },
 	})
 
 	require("nvim-tree").setup(opts)
