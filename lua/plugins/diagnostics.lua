@@ -49,7 +49,7 @@ local function set_lspkeymaps()
   maplua("n", "<leader>tc", trouble.close, "Close")
   -- Navigation
   maplua("n", "<leader>dn", function() vim.diagnostic.jump({ count = 1, float = true }) end, "Next")
-  maplua("n", "<leader>dn", function() vim.diagnostic.jump({ count = -1, float = true }) end, "Previous")
+  maplua("n", "<leader>dp", function() vim.diagnostic.jump({ count = -1, float = true }) end, "Previous")
   maplua("n", "<leader>ds", vim.diagnostic.open_float, "Show (current)")
 end
 
@@ -175,23 +175,18 @@ plugin.opts = {
 }
 
 function plugin.config(_, opts)
-  -- Choose shape of diagnostic icons
-  local function set_sign(_opts)
-    vim.fn.sign_define(_opts.name, {
-      texthl = _opts.name,
-      text = _opts.text,
-      numhl = "",
-    })
-  end
-  set_sign({ name = "DiagnosticSignError", text = "" })
-  set_sign({ name = "DiagnosticSignWarn", text = "" })
-  set_sign({ name = "DiagnosticSignHint", text = "" })
-  set_sign({ name = "DiagnosticSignInfo", text = "" })
-
   -- Neovim config of diagnostic
   vim.diagnostic.config({
     virtual_text = false,
     severity_sort = true,
+    signs = {
+      text = {
+        [vim.diagnostic.severity.ERROR] = "",
+        [vim.diagnostic.severity.WARN] = "",
+        [vim.diagnostic.severity.HINT] = "",
+        [vim.diagnostic.severity.INFO] = "",
+      }
+    },
     float = {
       border = "rounded",
       source = true,
