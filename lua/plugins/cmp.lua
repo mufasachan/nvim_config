@@ -3,6 +3,8 @@ local M = { "saghen/blink.cmp" }
 -- optional: provides snippets for the snippet source
 M.dependencies = { "rafamadriz/friendly-snippets" }
 
+M.build = "cargo build --release"
+
 ---@module 'blink.cmp'
 ---@type blink.cmp.Config
 M.opts = {
