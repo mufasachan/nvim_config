@@ -9,6 +9,7 @@ plugin.build = {
 function plugin.init()
   require "nvim-treesitter.configs".setup {
     ensure_installed = {
+      "gitignore",
       "c",
       "vim",
       "vimdoc",
