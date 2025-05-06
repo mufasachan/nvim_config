@@ -18,8 +18,6 @@ plugin.keys = {
 	{ "gs",         ":Telescope lsp_document_symbols<CR>",      desc = "Document symbols" },
 	{ "gS",         ":Telescope lsp_workspace_symbols<CR>",     desc = "Workspace symbols" },
 	{ "<leader>ff", ":Telescope current_buffer_fuzzy_find<CR>", desc = "Fuzzy find" },
-	{ "gr",         ":Telescope lsp_references<CR>" },
-	{ "gt",         ":Telescope lsp_type_definitions<CR>" },
 }
 
 plugin.dependencies = {
