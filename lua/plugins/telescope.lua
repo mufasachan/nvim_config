@@ -34,7 +34,7 @@ plugin.opts = {
 	},
 	pickers = {
 		find_files = {
-			find_command = { "fd", "-H", "-I", "--exclude", ".git", "--type", "f" },
+			find_command = { "fd", "-H", "-I", "-E", ".mypy_cache", "-E", ".venv", "-E", ".git", "--type", "f" },
 		}
 	},
 }
