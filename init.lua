@@ -10,7 +10,6 @@
 -- - (Medium) TODO and other tags search with Telescope
 -- - (Minor) No cursor in dash
 
-require("user.autocommands")
 require("user.ft")
 require("user.keymappings")
 require("user.neovide")
@@ -19,8 +18,7 @@ require("user.options")
 
 require("lazy").setup("plugins", { rocks = { hererocks = true } })
 
--- local utils = require("user.utils")
--- utils.load_modules_in_directory("after/lsp")
+require("user.autocommands")
 
 -- with alacritty bloodmoon theme
 -- vim.cmd.colorscheme("carbonfox")

@@ -7,7 +7,7 @@ plugin.dependencies = { "nvim-web-devicons" }
 plugin.opts = {
 	options = {
 		globalstatus = true,
-		disabled_filetypes = { "NvimTree" }
+		disabled_filetypes = { "NvimTree", "dashboard" }
 	},
 	sections = {
 		lualine_c = { { "filename", path = 1 }, },
