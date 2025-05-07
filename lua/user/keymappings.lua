@@ -1,14 +1,11 @@
--- Space as leader key
-vim.g.mapleader = " "
-
 -- Shortcuts
 vim.keymap.set({ "n", "x", "o" }, "<M-h>", "^", { desc = "Start of line" })
 vim.keymap.set({ "n", "x", "o" }, "<M-l>", "g_", { desc = "End of line" })
 vim.keymap.set(
-	"n",
-	"<leader>a",
-	":keepjumps normal! ggVG<cr>",
-	{ desc = "Select all" }
+  "n",
+  "<leader>a",
+  ":keepjumps normal! ggVG<cr>",
+  { desc = "Select all" }
 )
 
 -- Clear current line
@@ -55,4 +52,10 @@ vim.keymap.set("n", "<Leader>Q", ":qa<CR>", { desc = "Quit all" })
 vim.keymap.set("n", "<leader>w", "<cmd>write<cr>", { desc = "Save" })
 -- Commands: Help page
 vim.keymap.set("x", "H", '"xy:help <C-R>x<CR>',
-	{ desc = "Back", silent = true, noremap = true })
+  { desc = "Back", silent = true, noremap = true })
+
+-- Draft
+local wk = require "which-key"
+wk.add {
+  { "<Leader>D", "<CMD>enew<CR>", desc = "Create draft", silent = true }
+}

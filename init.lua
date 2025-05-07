@@ -10,8 +10,10 @@
 -- - (Medium) TODO and other tags search with Telescope
 -- - (Minor) No cursor in dash
 
+-- Space as leader key
+vim.g.mapleader = " "
+
 require("user.ft")
-require("user.keymappings")
 require("user.neovide")
 require("user.plugins")
 require("user.options")
@@ -19,6 +21,7 @@ require("user.options")
 require("lazy").setup("plugins", { rocks = { hererocks = true } })
 
 require("user.autocommands")
+require("user.keymappings")
 
 -- with alacritty bloodmoon theme
 -- vim.cmd.colorscheme("carbonfox")
