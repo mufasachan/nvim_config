@@ -97,6 +97,7 @@ function plugin.init()
     { "<Leader>b>", "<CMD>BufferLineMoveNext<CR>",     desc = "Move next" },
     { "<Leader>b<", "<CMD>BufferLineMovePrev<CR>",     desc = "Move previous" },
     { "<Leader>bc", "<CMD>BufferLineCloseOthers<CR>",  desc = "Close others" },
+    { "<Leader>bp", "<CMD>BufferLineTogglePin<CR>",  desc = "Toggle Pin" },
     -- Dvorak go to first buffer
     { "<Leader>ba", "<CMD>BufferLineGoToBuffer 1<CR>", desc = "Goto buffer 1" },
     { "<Leader>bo", "<CMD>BufferLineGoToBuffer 2<CR>", desc = "Goto buffer 2" },
