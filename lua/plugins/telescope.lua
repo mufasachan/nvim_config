@@ -9,41 +9,45 @@ plugin.name = "telescope"
 
 plugin.dependencies = { "nvim-web-devicons" }
 
-plugin.keys = {
-	{ "gf",         ":Telescope find_files<CR>",                desc = "Find files" },
-	{ "<leader>?",  ":Telescope oldfiles<CR>",                  desc = "Recent files" },
-	{ "<leader>fg", ":Telescope live_grep<CR>",                 desc = "Live GREP" },
-	{ "<leader>fh", ":Telescope help_tags<CR>",                 desc = "Help tags" },
-	{ "<leader>ft", ":Telescope pickers<CR>",                   desc = "Pickers" },
-	{ "gs",         ":Telescope lsp_document_symbols<CR>",      desc = "Document symbols" },
-	{ "gS",         ":Telescope lsp_workspace_symbols<CR>",     desc = "Workspace symbols" },
-	{ "<leader>ff", ":Telescope current_buffer_fuzzy_find<CR>", desc = "Fuzzy find" },
-}
-
 plugin.dependencies = {
-	"plenary",
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+  "plenary",
+  { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 }
 
 plugin.opts = {
-	defaults = {
-		mappings = {
-			n = { ["q"] = "close" },
-			i = { ["kj"] = "close" },
-		},
-	},
-	pickers = {
-		find_files = {
-			find_command = { "fd", "-H", "-I", "-E", ".mypy_cache", "-E", ".venv", "-E", ".git", "--type", "f" },
-		}
-	},
+  defaults = {
+    mappings = {
+      n = { ["q"] = "close" },
+      i = {
+        ["kj"] = "close",
+      },
+    },
+  },
+  pickers = {
+    find_files = {
+      find_command = { "fd", "-H", "-I", "-E", ".mypy_cache", "-E", ".venv", "-E", ".git", "--type", "f" },
+    }
+  },
 }
 
 function plugin.config()
-	local telescope = require "telescope"
+  local telescope = require "telescope"
 
-	telescope.load_extension("fzf")
-	telescope.setup(plugin.opts)
+  local wk = require "which-key"
+  wk.add {
+    { "gf",         ":Telescope find_files<CR>",                silent = true, desc = "Find files" },
+    { "<leader>?",  ":Telescope oldfiles<CR>",                  silent = true, desc = "Recent files" },
+    { "<leader>fg", ":Telescope live_grep<CR>",                 silent = true, desc = "Live GREP" },
+    { "<leader>fh", ":Telescope help_tags<CR>",                 silent = true, desc = "Help tags" },
+    { "<leader>ft", ":Telescope pickers<CR>",                   silent = true, desc = "Pickers" },
+    { "gb",         ":Telescope buffers<CR>",      silent = true, desc = "Document symbols" },
+    { "gs",         ":Telescope lsp_document_symbols<CR>",      silent = true, desc = "Document symbols" },
+    { "gS",         ":Telescope lsp_workspace_symbols<CR>",     silent = true, desc = "Workspace symbols" },
+    { "<leader>ff", ":Telescope current_buffer_fuzzy_find<CR>", silent = true, desc = "Fuzzy find" },
+  }
+
+  telescope.load_extension("fzf")
+  telescope.setup(plugin.opts)
 end
 
 return plugin
