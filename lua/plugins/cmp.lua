@@ -3,7 +3,8 @@ local M = { "saghen/blink.cmp" }
 -- optional: provides snippets for the snippet source
 M.dependencies = { "rafamadriz/friendly-snippets" }
 
-M.build = "cargo build --release"
+-- use a release tag to download pre-built binaries
+M.version = "1.*"
 
 ---@module 'blink.cmp'
 ---@type blink.cmp.Config
@@ -39,7 +40,7 @@ M.opts = {
   },
 
   snippets = {
-    preset = 'luasnip'
+    preset = "luasnip"
   },
 
   -- Default list of enabled providers defined so that you can extend it
@@ -53,7 +54,7 @@ M.opts = {
   -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
   --
   -- See the fuzzy documentation for more information
-  fuzzy = { implementation = "prefer_rust_with_warning" }
+  fuzzy = { implementation = "prefer_rust_with_warning" },
 }
 M.opts_extend = { "sources.default" }
 
