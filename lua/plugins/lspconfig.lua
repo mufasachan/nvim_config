@@ -22,6 +22,9 @@ function plugin.config()
   -- All Mason-installed LSP are enabled by default
   require("mason-lspconfig").setup_handlers {
     function(server_name)
+      if server_name == "basedpyright" then
+        return
+      end
       vim.lsp.enable(server_name)
     end,
   }
