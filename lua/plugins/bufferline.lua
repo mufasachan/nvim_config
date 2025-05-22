@@ -1,14 +1,14 @@
-local plugin = { "akinsho/bufferline.nvim" }
-plugin.name = "bufferline"
-plugin.version = "*"
+local M = { "akinsho/bufferline.nvim" }
+M.name = "bufferline"
+M.version = "*"
 
-plugin.depencies = {
+M.depencies = {
   { "nvim-web-devicons" },
 }
 
-plugin.event = "VeryLazy"
+M.event = "VeryLazy"
 
-plugin.opts = {
+M.opts = {
   options = {
     mod = "buffers",
     themable = true,
@@ -85,19 +85,20 @@ plugin.opts = {
   }
 }
 
-function plugin.init()
+function M.config(_, opts)
+  require "bufferline".setup(opts)
   local wk = require("which-key")
   wk.add({
     { "<Leader>b",  group = "Buffer" },
-    { "<Tab>",      "<CMD>BufferLineCycleNext<CR>",    desc = "Next buffer",     hidden = true },
-    { "<S-Tab>",    "<CMD>BufferLineCyclePrev<CR>",    desc = "Previous buffer", hidden = true },
-    { "<Leader>c",  "<cmd>bp|bd #<cr>",                 desc = "Close buffer",    silent = true },
-    { "<Leader>C",  "<cmd>bp|bd! #<cr>",                 desc = "Close buffer (Force)",    silent = true },
-    { "<leader>bb", "<cmd>e #<cr>",                    desc = "Back",            silent = true },
+    { "<Tab>",      "<CMD>BufferLineCycleNext<CR>",    desc = "Next buffer",          hidden = true },
+    { "<S-Tab>",    "<CMD>BufferLineCyclePrev<CR>",    desc = "Previous buffer",      hidden = true },
+    { "<Leader>c",  "<cmd>bp|bd #<cr>",                desc = "Close buffer",         silent = true },
+    { "<Leader>C",  "<cmd>bp|bd! #<cr>",               desc = "Close buffer (Force)", silent = true },
+    { "<leader>bb", "<cmd>e #<cr>",                    desc = "Back",                 silent = true },
     { "<Leader>b>", "<CMD>BufferLineMoveNext<CR>",     desc = "Move next" },
     { "<Leader>b<", "<CMD>BufferLineMovePrev<CR>",     desc = "Move previous" },
     { "<Leader>bc", "<CMD>BufferLineCloseOthers<CR>",  desc = "Close others" },
-    { "<Leader>bp", "<CMD>BufferLineTogglePin<CR>",  desc = "Toggle Pin" },
+    { "<Leader>bp", "<CMD>BufferLineTogglePin<CR>",    desc = "Toggle Pin" },
     -- Dvorak go to first buffer
     { "<Leader>ba", "<CMD>BufferLineGoToBuffer 1<CR>", desc = "Goto buffer 1" },
     { "<Leader>bo", "<CMD>BufferLineGoToBuffer 2<CR>", desc = "Goto buffer 2" },
@@ -108,4 +109,8 @@ function plugin.init()
   })
 end
 
-return plugin
+function M.init()
+
+end
+
+return M
