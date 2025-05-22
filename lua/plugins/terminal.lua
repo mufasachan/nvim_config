@@ -7,7 +7,7 @@ function M.init()
   wk.add {
     { "<M-1>", ":2ToggleTerm size=5 direction=horizontal<CR>" },
     { "<M-2>", ":2ToggleTerm size=5 direction=float<CR>" },
-    { "<Leader>T", ":ToggleTerm direction=tab<CR>" }
+    { "<Leader>T", ":TermNew direction=tab<CR>" }
   }
 
   local laststatus_memory = nil
