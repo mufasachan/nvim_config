@@ -1,15 +1,27 @@
-local plugin = { "akinsho/toggleterm.nvim" }
+local M = { "akinsho/toggleterm.nvim" }
 
-plugin.config = true
+M.config = true
 
-function plugin.init()
-  local map = vim.keymap.set
+function M.init()
   local wk = require("which-key")
   wk.add {
     { "<M-1>", ":2ToggleTerm size=5 direction=horizontal<CR>" },
     { "<M-2>", ":2ToggleTerm size=5 direction=float<CR>" },
     { "<Leader>T", ":ToggleTerm direction=tab<CR>" }
   }
+
+  local laststatus_memory = nil
+  vim.api.nvim_create_autocmd("TermEnter", {
+    callback = function()
+      laststatus_memory = vim.o.laststatus
+      vim.o.laststatus = 0
+    end
+  })
+  vim.api.nvim_create_autocmd("TermLeave", {
+    callback = function()
+      vim.o.laststatus = laststatus_memory
+    end
+  })
 
   function _G.set_terminal_keymaps()
     wk.add {
@@ -26,4 +38,4 @@ function plugin.init()
   _G.set_terminal_keymaps()
 end
 
-return plugin
+return M
