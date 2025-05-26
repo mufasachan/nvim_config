@@ -1,12 +1,6 @@
 -- Shortcuts
 vim.keymap.set({ "n", "x", "o" }, "<M-h>", "^", { desc = "Start of line" })
 vim.keymap.set({ "n", "x", "o" }, "<M-l>", "g_", { desc = "End of line" })
-vim.keymap.set(
-  "n",
-  "<leader>a",
-  ":keepjumps normal! ggVG<cr>",
-  { desc = "Select all" }
-)
 
 -- Clear current line
 vim.keymap.set("n", "\\c", "0D", { silent = true })
