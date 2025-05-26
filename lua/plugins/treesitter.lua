@@ -10,6 +10,7 @@ M.dependencies = {
   "nvim-treesitter/nvim-treesitter-textobjects",
 }
 
+M.main = "nvim-treesitter.configs"
 M.opts = {
   ensure_installed = {
     "gitignore",
@@ -82,9 +83,5 @@ M.opts = {
   },
   additional_vim_regex_highlighting = true,
 }
-
-function M.config(_, opts)
-  require "nvim-treesitter.configs".setup(opts)
-end
 
 return M
