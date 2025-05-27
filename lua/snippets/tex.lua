@@ -16,6 +16,12 @@ local snippets = {
     t("CUHK-PEDES"),
     i(0)
   }),
+  s("para", {
+    t("\\paragraph{"),
+    i(1, "text"),
+    t("}"),
+    i(0)
+  }),
   s("mono", {
     t("\\texttt{"),
     i(1, "text"),
