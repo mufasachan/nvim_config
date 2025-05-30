@@ -1,12 +1,6 @@
 local plugin = { "neovim/nvim-lspconfig" }
 plugin.name = "lspconfig"
 
-plugin.dependencies = {
-  { "williamboman/mason-lspconfig.nvim", lazy = true, dependencies = "mason" },
-  { "williamboman/mason.nvim", name = "mason", opts = { ui = { border = "rounded" } },
-  },
-}
-
 plugin.cmd = "LspInfo"
 plugin.event = { "BufReadPre", "BufNewFile" }
 
@@ -18,16 +12,6 @@ function plugin.config()
       { "<Leader>F", function() vim.lsp.buf.format({ async = true }) end, buffer = 0, desc = "Format" },
     })
   end
-
-  -- All Mason-installed LSP are enabled by default
-  require("mason-lspconfig").setup_handlers {
-    function(server_name)
-      if server_name == "basedpyright" then
-        return
-      end
-      vim.lsp.enable(server_name)
-    end,
-  }
 
   -- Set generic LSP mappings
   local group = vim.api.nvim_create_augroup("lsp_cmds", { clear = true })
