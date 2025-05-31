@@ -1,10 +1,23 @@
-local group = vim.api.nvim_create_augroup("user_cmds", { clear = true })
-
-vim.api.nvim_create_autocmd("BufWrite", {callback = function ()
-  if vim.lsp.get_clients({bufnr = 0, method ="textDocument/formatting"}) then
-    vim.lsp.buf.format()
+local wk = require "which-key"
+vim.api.nvim_create_autocmd("LspAttach", {
+  desc = "LSP keymaps",
+  callback = function(event)
+    wk.add({
+      { "gd", vim.lsp.buf.definition,  buffer = event.buf },
+      { "gD", vim.lsp.buf.declaration, buffer = event.buf },
+    })
   end
-end})
+})
+
+vim.api.nvim_create_autocmd("BufWrite", {
+  callback = function()
+    if vim.lsp.get_clients({ bufnr = 0, method = "textDocument/formatting" }) then
+      vim.lsp.buf.format()
+    end
+  end
+})
+
+local group = vim.api.nvim_create_augroup("user_cmds", { clear = true })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight on yank",
@@ -49,7 +62,7 @@ local argv = vim.fn.argv()
 -- No args -> dashboard should be displayed.
 if #argv == 0 then
   vim.api.nvim_create_autocmd("VimEnter", {
-    callback = function ()
+    callback = function()
       vim.cmd("Dashboard")
     end,
     group = startup_group,
