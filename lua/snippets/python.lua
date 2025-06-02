@@ -1,16 +1,18 @@
-local snippets = {}
-
 local ls = require "luasnip"
 local s = ls.snippet
 local i = ls.insert_node
 local t = ls.text_node
 
-snippets[#snippets + 1] = s(
-  "mainf",
-  {
-    t { "def main():", "\t" },
-    i(1),
-    t { "", "", 'if __name__ == "__main__":', "\tmain()", "" }
-  })
+local snippets = {
+  s(
+    "mainf",
+    {
+      t { "def main():", "\t" },
+      i(1),
+      t { "", "", 'if __name__ == "__main__":', "\tmain()", "" }
+    }),
+}
 
-return snippets, snippets
+local autosnippets = {}
+
+return snippets, autosnippets
