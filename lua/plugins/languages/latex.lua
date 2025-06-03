@@ -13,4 +13,5 @@ function vimtex.init()
 end
 
 local plugins = { vimtex, "barreiroleo/ltex_extra.nvim" }
+-- local plugins = vimtex
 return plugins
