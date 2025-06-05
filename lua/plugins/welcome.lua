@@ -8,17 +8,16 @@ end
 
 local function create_banner()
   local header = {
-    [[                                             ]],
-    [[      __ __                        __        ]],
-    [[     / //_/__ ___ ___    _______ _/ /_ _     ]],
-    [[    / ,< / -_) -_) _ \  / __/ _ `/ /  ' \    ]],
-    [[   /_/|_|\__/\__/ .__/  \__/\_,_/_/_/_/_/    ]],
-    [[               /_/     / __/___              ]],
-    [[                       > _/_ _/              ]],
-    [[      _______ __________\ ___/___  ___       ]],
-    [[     / __/ _ `/ __/ __/ // / / _ \/ _ \      ]],
-    [[     \__/\_,_/_/ /_/  \_, /  \___/_//_/      ]],
-    [[                     /___/                   ]],
+    [[                                                                                                   ]],
+    [[███╗   ███╗███████╗███╗   ███╗███████╗███╗   ██╗████████╗ ██████╗                                  ]],
+    [[████╗ ████║██╔════╝████╗ ████║██╔════╝████╗  ██║╚══██╔══╝██╔═══██                                  ]],
+    [[██╔████╔██║█████╗  ██╔████╔██║█████╗  ██╔██╗ ██║   ██║   ██║   ██                                  ]],
+    [[██║╚██╔╝██║██╔══╝  ██║╚██╔╝██║██╔══╝  ██║╚██╗██║   ██║   ██║   ██   ███╗   ███╗ ██████╗ ██████╗ ██╗]],
+    [[██║ ╚═╝ ██║███████╗██║ ╚═╝ ██║███████╗██║ ╚████║   ██║   ╚██████╔   ████╗ ████║██╔═══██╗██╔══██╗██║]],
+    [[╚═╝     ╚═╝╚══════╝╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝    ╚═════╝   ██╔████╔██║██║   ██║██████╔╝██║]],
+    [[                                                                    ██║╚██╔╝██║██║   ██║██╔══██╗██║]],
+    [[            "Droit ou redressé" --- Marcus Aurelius                 ██║ ╚═╝ ██║╚██████╔╝██║  ██║██║]],
+    [[                                                                    ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝]],
   }
   local center = {
     {
@@ -40,7 +39,7 @@ local function create_banner()
       desc = " Draft",
       key = "d",
       key_format = "%s",
-      action = ':enew',
+      action = ":enew",
     },
     {
       icon = "",
@@ -57,17 +56,15 @@ local function create_banner()
       action = "quit",
     },
   }
-  local footer = {
-    [["Droit ou redressé" --- Marcus Aurelius]] }
+  local footer = {}
   local blank_line = [[                                             ]]
 
-  local n_lines_content = #header + (#center * 2) + #footer
+  local n_lines_content = #header + (#center * 2)
   local bonus_lines = vim.o.lines - n_lines_content
   if bonus_lines > 0 then
     local bonus_lines_footer = math.floor(bonus_lines / 2)
     for _ = 1, bonus_lines_footer do
       table.insert(header, blank_line)
-      table.insert(footer,1, blank_line)
     end
 
     local bonus_lines_header = math.ceil(bonus_lines / 2)
