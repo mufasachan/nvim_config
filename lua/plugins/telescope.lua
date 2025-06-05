@@ -11,7 +11,7 @@ M.dependencies = {
   "nvim-web-devicons",
   "plenary",
   { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-  { dir = "~/code/telescope-cdfolder.nvim/" },
+  { "mufasachan/telescope-cdfolder" },
 }
 
 M.opts = {
