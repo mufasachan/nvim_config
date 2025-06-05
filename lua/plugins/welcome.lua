@@ -35,6 +35,13 @@ local function create_banner()
       action = "SessionManager load_session"
     },
     {
+      icon = "",
+      desc = " Open folders ...",
+      key = "f",
+      key_format = "%s",
+      action = "Telescope cdfolder find"
+    },
+    {
       icon = "",
       desc = " Draft",
       key = "d",

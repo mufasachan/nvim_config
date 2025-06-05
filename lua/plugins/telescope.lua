@@ -4,17 +4,17 @@
 -- table.insert(vimgrep_arguments, "--glob")
 -- table.insert(vimgrep_arguments, "!**/.git/*")
 -- plugin.opts.defaults.vimgrep_arguments = vimgrep_arguments
-local plugin = { "nvim-telescope/telescope.nvim" }
-plugin.name = "telescope"
+local M = { "nvim-telescope/telescope.nvim" }
+M.name = "telescope"
 
-plugin.dependencies = { "nvim-web-devicons" }
-
-plugin.dependencies = {
+M.dependencies = {
+  "nvim-web-devicons",
   "plenary",
   { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+  { dir = "~/code/telescope-cdfolder.nvim/" },
 }
 
-plugin.opts = {
+M.opts = {
   defaults = {
     mappings = {
       n = { ["q"] = "close" },
@@ -30,9 +30,7 @@ plugin.opts = {
   },
 }
 
-function plugin.config()
-  local telescope = require "telescope"
-
+function M.config(_, opts)
   local wk = require "which-key"
   wk.add {
     { "gf",         ":Telescope find_files<CR>",                silent = true, desc = "Find files" },
@@ -40,14 +38,16 @@ function plugin.config()
     { "<leader>fg", ":Telescope live_grep<CR>",                 silent = true, desc = "Live GREP" },
     { "<leader>fh", ":Telescope help_tags<CR>",                 silent = true, desc = "Help tags" },
     { "<leader>ft", ":Telescope pickers<CR>",                   silent = true, desc = "Pickers" },
-    { "gb",         ":Telescope buffers<CR>",      silent = true, desc = "Document symbols" },
+    { "<leader>ff", ":Telescope current_buffer_fuzzy_find<CR>", silent = true, desc = "Fuzzy find" },
+    { "gb",         ":Telescope buffers<CR>",                   silent = true, desc = "Document symbols" },
     { "gs",         ":Telescope lsp_document_symbols<CR>",      silent = true, desc = "Document symbols" },
     { "gS",         ":Telescope lsp_workspace_symbols<CR>",     silent = true, desc = "Workspace symbols" },
-    { "<leader>ff", ":Telescope current_buffer_fuzzy_find<CR>", silent = true, desc = "Fuzzy find" },
   }
 
+  local telescope = require "telescope"
+  telescope.setup(opts)
   telescope.load_extension("fzf")
-  telescope.setup(plugin.opts)
+  telescope.load_extension("cdfolder")
 end
 
-return plugin
+return M
