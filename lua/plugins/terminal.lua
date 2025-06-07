@@ -1,6 +1,6 @@
 local M = { "akinsho/toggleterm.nvim" }
 
-M.config = true
+M.opts = {}
 
 function M.init()
   local wk = require("which-key")
@@ -8,21 +8,13 @@ function M.init()
     { "<M-1>",     ":2ToggleTerm size=5 direction=horizontal<CR>" },
     { "<M-2>",     ":2ToggleTerm size=5 direction=float<CR>" },
     { "<Leader>T", "<CMD>TermNew direction=tab<CR>" },
-    { "<Leader>L", "<CMD>TermExec direction=tab name=lg cmd=lazygit<CR>" }
+    { "<Leader>L", function()
+      vim.cmd('TermExec direction=tab name=lg cmd="lazygit"')
+      vim.defer_fn(function()
+        vim.cmd("startinsert!")
+      end, 50)
+    end }
   }
-
-  local laststatus_memory = nil
-  vim.api.nvim_create_autocmd("TermEnter", {
-    callback = function()
-      laststatus_memory = vim.o.laststatus
-      vim.o.laststatus = 0
-    end
-  })
-  vim.api.nvim_create_autocmd("TermLeave", {
-    callback = function()
-      vim.o.laststatus = laststatus_memory
-    end
-  })
 
   function _G.set_terminal_keymaps()
     wk.add {
