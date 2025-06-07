@@ -13,6 +13,7 @@ M.dependencies = {
   "plenary",
   { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   { "mufasachan/telescope-cdfolder" },
+  -- { dir = "~/code/telescope-cdfolder.nvim/" },
 }
 
 M.opts = {
@@ -29,6 +30,33 @@ M.opts = {
       find_command = { "fd", "-H", "-I", "-E", ".mypy_cache", "-E", ".venv", "-E", ".git", "--type", "f" },
     }
   },
+  extensions = {
+    cdfolder = {
+      cwd_to_exclude_dir = {
+        ["*"] = {
+          "node_modules",
+          "venv",
+          ".git",
+        },
+        -- slow laptop
+        ["home"] = {
+          ".cache",
+          ".cargo",
+          ".local/share/containers",
+          ".local/share/pnpm",
+          ".local/share/virtualenv",
+          ".mozilla",
+          ".npm",
+          ".rustup",
+        },
+      }
+    },
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true
+    }
+  }
 }
 
 function M.config(_, opts)

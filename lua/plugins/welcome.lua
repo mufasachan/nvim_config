@@ -39,7 +39,7 @@ local function create_banner()
       desc = " Open folders ...",
       key = "f",
       key_format = "%s",
-      action = "Telescope cdfolder find"
+      action = "Telescope cdfolder"
     },
     {
       icon = "",
