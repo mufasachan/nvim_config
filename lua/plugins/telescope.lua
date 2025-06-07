@@ -9,6 +9,7 @@ M.name = "telescope"
 
 M.dependencies = {
   "nvim-web-devicons",
+  "trouble",
   "plenary",
   { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   { "mufasachan/telescope-cdfolder" },
@@ -42,6 +43,19 @@ function M.config(_, opts)
     { "gb",         ":Telescope buffers<CR>",                   silent = true, desc = "Document symbols" },
     { "gs",         ":Telescope lsp_document_symbols<CR>",      silent = true, desc = "Document symbols" },
     { "gS",         ":Telescope lsp_workspace_symbols<CR>",     silent = true, desc = "Workspace symbols" },
+  }
+
+  local open_with_trouble = function(bufnr)
+    ---@diagnostic disable-next-line: missing-fields
+    return require("trouble.sources.telescope").open(bufnr, {
+      focus = true,
+    })
+  end
+  opts.pickers["live_grep"] = {
+    mappings = {
+      i = { ["<C-t>"] = open_with_trouble },
+      n = { ["<C-t>"] = open_with_trouble },
+    }
   }
 
   local telescope = require "telescope"
