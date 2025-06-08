@@ -19,6 +19,7 @@ require("user.plugins")
 require("user.options")
 
 require("lazy").setup("plugins", { rocks = { hererocks = true } })
+vim.cmd.packadd("nohlsearch")
 
 require("user.autocommands")
 require("user.keymappings")
