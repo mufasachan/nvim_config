@@ -11,6 +11,9 @@ M.event = "VeryLazy"
 M.opts = {
   options = {
     mod = "buffers",
+    indicator = {
+      style = "underline",
+    },
     themable = true,
     numbers = "none",
     close_command = "bdelete! %d",
@@ -42,7 +45,7 @@ M.opts = {
       local icon, hl = require("nvim-web-devicons").get_icon_by_filetype(element.filetype, { default = false })
       return icon, hl
     end,
-    show_buffer_icons = true, -- disable filetype icons for buffers
+    show_buffer_icons = false, -- disable filetype icons for buffers
     show_buffer_close_icons = false,
     show_tab_indicators = true,
     -- whether to show duplicate buffer prefix
@@ -52,7 +55,7 @@ M.opts = {
     move_wraps_at_ends = false, -- whether or not the move command "wraps" at the first or last position
     -- can also be a table containing 2 custom separators
     -- [focused and unfocused]. eg: { '|', '|' }
-    separator_style = "thin",
+    separator_style = { "", "" },
     always_show_bufferline = false,
     hover = {
       enabled = false,
@@ -86,14 +89,15 @@ M.opts = {
 }
 
 function M.config(_, opts)
+  opts.options["style_preset"] = require("bufferline").style_preset.minimal
   require "bufferline".setup(opts)
   local wk = require("which-key")
   wk.add({
     { "<Leader>b",  group = "Buffer" },
     { "<Tab>",      "<CMD>BufferLineCycleNext<CR>",    desc = "Next buffer",          hidden = true },
     { "<S-Tab>",    "<CMD>BufferLineCyclePrev<CR>",    desc = "Previous buffer",      hidden = true },
-    { "<Leader>c",  "<cmd>bp|bd #<cr>",                desc = "Close buffer",         silent = true,  hidden = true },
-    { "<Leader>C",  "<cmd>bp|bd! #<cr>",               desc = "Close buffer (Force)", silent = true,  hidden = true },
+    { "<Leader>c",  "<cmd>bp|bd #<cr>",                desc = "Close buffer",         silent = true, hidden = true },
+    { "<Leader>C",  "<cmd>bp|bd! #<cr>",               desc = "Close buffer (Force)", silent = true, hidden = true },
     { "<leader>bb", "<cmd>e #<cr>",                    desc = "Back",                 silent = true },
     { "<Leader>b>", "<CMD>BufferLineMoveNext<CR>",     desc = "Move next" },
     { "<Leader>b<", "<CMD>BufferLineMovePrev<CR>",     desc = "Move previous" },
