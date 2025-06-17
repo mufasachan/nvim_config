@@ -42,19 +42,23 @@ M.opts = {
       set_jumps = true, -- whether to set jumps in the jumplist
       goto_next_start = {
         ["]m"] = "@function.outer",
-        ["]c"] = "@conditional.outer",
+        ["]c"] = "@class.outer",
+        ["]i"] = "@conditional.outer",
       },
       goto_next_end = {
         ["]M"] = "@function.outer",
-        ["]C"] = "@conditional.outer",
+        ["]C"] = "@class.outer",
+        ["]I"] = "@conditional.outer",
       },
       goto_previous_start = {
         ["[m"] = "@function.outer",
-        ["[c"] = "@conditional.outer",
+        ["[c"] = "@class.outer",
+        ["[i"] = "@conditional.outer",
       },
       goto_previous_end = {
         ["[M"] = "@function.outer",
-        ["[C"] = "@conditional.outer",
+        ["[C"] = "@class.outer",
+        ["[I"] = "@conditional.outer",
       },
     },
     swap = {
@@ -70,8 +74,8 @@ M.opts = {
       enable = true,
       lookahead = true,
       keymaps = {
-        ["ac"] = "@conditional.outer",
-        ["ic"] = "@conditional.inner",
+        ["ai"] = "@conditional.outer",
+        ["ii"] = "@conditional.inner",
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
       }
