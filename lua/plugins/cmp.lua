@@ -1,11 +1,22 @@
 local M = { "saghen/blink.cmp" }
+M.dependencies = { "rcarriga/cmp-dap" }
 
 -- use a release tag to download pre-built binaries
 M.version = "1.*"
 
+-- source https://www.reddit.com/r/neovim/comments/1hneftb/get_completions_in_daprepl_buffer_with_blinkcmp/?show=original
+-- thanks
+local function is_dap_buffer()
+  return require("cmp_dap").is_dap_buffer()
+end
+
+
 ---@module 'blink.cmp'
 ---@type blink.cmp.Config
 M.opts = {
+  enabled = function()
+    return vim.bo.buftype ~= "prompt" or is_dap_buffer()
+  end,
   -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
   -- 'super-tab' for mappings similar to vscode (tab to accept)
   -- 'enter' for enter to accept
@@ -40,10 +51,16 @@ M.opts = {
     preset = "luasnip"
   },
 
-  -- Default list of enabled providers defined so that you can extend it
-  -- elsewhere in your config, without redefining it, due to `opts_extend`
   sources = {
-    default = { "lsp", "path", "snippets", "buffer" },
+    default = function()
+      if is_dap_buffer() then
+        return { "dap", "snippets", "buffer" }
+      end
+      return { "lsp", "path", "snippets", "dap", "buffer" }
+    end,
+    providers = {
+      dap = { name = "dap", module = "blink.compat.source" },
+    },
   },
   signature = { enabled = true },
   -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
@@ -55,4 +72,5 @@ M.opts = {
 }
 M.opts_extend = { "sources.default" }
 
-return M
+local M_blink_compat = { "saghen/blink.compat", version = "2.*", lazy = true, opts = {} }
+return { M, M_blink_compat }
