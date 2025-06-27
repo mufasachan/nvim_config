@@ -56,7 +56,7 @@ M.opts = {
       if is_dap_buffer() then
         return { "dap", "snippets", "buffer" }
       end
-      return { "lsp", "path", "snippets", "dap", "buffer" }
+      return { "lsp", "path", "snippets", "buffer" }
     end,
     providers = {
       dap = { name = "dap", module = "blink.compat.source" },
