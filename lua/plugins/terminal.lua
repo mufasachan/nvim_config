@@ -13,7 +13,7 @@ function M.init()
       vim.defer_fn(function()
         vim.cmd("startinsert!")
       end, 50)
-    end }
+    end, desc = "Lazygit" }
   }
 
   function _G.set_terminal_keymaps()
