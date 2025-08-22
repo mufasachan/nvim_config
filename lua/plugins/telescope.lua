@@ -62,7 +62,6 @@ M.opts = {
 function M.config(_, opts)
   local wk = require "which-key"
   wk.add {
-    { "gf",         ":Telescope find_files<CR>",                silent = true, desc = "Find files" },
     { "<leader>?",  ":Telescope oldfiles<CR>",                  silent = true, desc = "Recent files" },
     { "<leader>fg", ":Telescope live_grep<CR>",                 silent = true, desc = "Live GREP" },
     { "<leader>fh", ":Telescope help_tags<CR>",                 silent = true, desc = "Help tags" },
