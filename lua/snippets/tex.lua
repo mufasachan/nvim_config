@@ -1,6 +1,7 @@
 local ls = require("luasnip")
 local s = ls.snippet
 local t = ls.text_node
+local c = ls.choice_node
 local i = ls.insert_node
 local f = ls.function_node
 
@@ -30,6 +31,12 @@ local snippets = {
     f(function(args) return args[1] end, { 1 }), -- Repeat the subsection title
     t(" (end)")
   }),
+  s("todo", {
+    t("\\todo{"),
+    i(1, "text"),
+    t("}"),
+    i(0)
+  }),
   s("para", {
     t("\\paragraph{"),
     i(1, "text"),
@@ -39,6 +46,14 @@ local snippets = {
   s("para", {
     t("\\paragraph{"),
     i(1, "text"),
+    t("}"),
+    i(0)
+  }),
+  s("sectionref", {
+    t("Section~\\ref{"),
+    c(1, { t("sub"), t("ssub"), t("sec") }),
+    t(":"),
+    i(2, "text"),
     t("}"),
     i(0)
   }),
@@ -51,6 +66,12 @@ local snippets = {
 }
 
 local autosnippets = {
+  s("/t", {
+    t("\\text{"),
+    i(1),
+    t("}"),
+    i(0)
+  }),
   s("/p", {
     t("\\parencite{"),
     i(1, "citekey"),
@@ -80,7 +101,13 @@ local autosnippets = {
   }),
   s("/g", {
     t("\\gls{"),
-    i(1, "abbrv"),
+    i(1),
+    t("}"),
+    i(0)
+  }),
+  s("/G", {
+    t("\\glsplural{"),
+    i(1),
     t("}"),
     i(0)
   }),

@@ -12,6 +12,16 @@ function vimtex.init()
   }
 end
 
-local plugins = { vimtex, "barreiroleo/ltex_extra.nvim" }
--- local plugins = vimtex
-return plugins
+local ltex_extra = { "barreiroleo/ltex_extra.nvim" }
+ltex_extra.opts = { path = ".ltex" }
+function ltex_extra.config(_, opts)
+  opts = opts or {}
+
+  vim.lsp.config("ltex_plus", {
+    on_attach = function(_, _)
+      require("ltex_extra").setup(opts)
+    end
+  })
+end
+
+return { vimtex, ltex_extra }
