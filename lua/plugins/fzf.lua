@@ -7,6 +7,7 @@ M.config = function(_, opts)
   require("fzf-lua").setup(opts)
 
   require("which-key").add {
+    { [[<C-\>]],    "<CMD>FzfLua global<CR>",  silent = true },
     { "gf",         "<CMD>FzfLua files<CR>",   silent = true },
     { "<Leader>fb", "<CMD>FzfLua buffers<CR>", silent = true },
   }
