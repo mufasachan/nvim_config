@@ -21,9 +21,6 @@ function M.init()
       { mode = "t", lhs = "<C-Esc>",      rhs = [[<C-\><C-n>]] },
       { mode = "t", lhs = "<C-PageUp>",   rhs = "<CMD>tabp<CR>" },
       { mode = "t", lhs = "<C-PageDown>", rhs = "<CMD>tabn<CR>" },
-      -- On my tablet, I only use one orientation.
-      { mode = "t", lhs = "<C-k>",        rhs = "<Cmd>wincmd k<CR>" },
-      { mode = "t", lhs = "<M-BS>",       rhs = "<Cmd>ToggleTerm<CR>" },
     }
   end
 
