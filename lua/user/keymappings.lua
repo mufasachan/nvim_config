@@ -20,6 +20,8 @@ wk.add {
   { "<Leader>q",     "<CMD>q<CR>",       desc = "Quit",                                    hidden = true },
   { "<Leader>w",     "<CMD>w<CR>",       desc = "Save",                                    silent = true, hidden = true },
   { "<Leader><C-d>", "<CMD>enew<CR>",    desc = "Create draft",                            silent = true },
+  -- Back to previous buffer
+  { "<Leader>b",     "<CMD>b#<CR>",      desc = "Previous buffer" },
   -- No register for x
   { mode = "nx",     lhs = "x",          rhs = '"_x' },
   -- jk is Esc

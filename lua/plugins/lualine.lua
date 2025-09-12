@@ -2,8 +2,6 @@ local M = { "nvim-lualine/lualine.nvim" }
 
 M.dependencies = { "nvim-web-devicons" }
 
--- SPECIFICS COMPONENTS SETTINGS
--- path = 1 is relative path
 M.opts = {
   options = {
     globalstatus = true,
@@ -11,8 +9,14 @@ M.opts = {
     section_separators = "",
     component_separators = "",
   },
+  tabline = {
+    lualine_a = { { "datetime", style = "%H:%M" } },
+    lualine_b = { { "filetype", icon_only = true } },
+    lualine_c = { { "filename", path = 1 } },
+    lualine_z = { "tabs" },
+  },
   sections = {
-    lualine_b = { "branch" },
+    lualine_b = { "branch", "diff" },
     lualine_c = {
       {
         function()
@@ -22,11 +26,10 @@ M.opts = {
         end,
         color = { fg = "#ea9a97" }
       },
-      { "filename", path = 1 },
     },
-    lualine_x = { "searchcount", "filetype" },
-    lualine_y = { { "datetime", style = "%H:%M" } },
-    lualine_z = { "progress", "location" },
+    lualine_x = { "diagnostics" },
+    lualine_y = { "searchcount" },
+    lualine_z = { "location" },
   },
 }
 
