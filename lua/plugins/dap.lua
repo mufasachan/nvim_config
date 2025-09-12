@@ -32,6 +32,7 @@ M.config = function()
     { "<Leader>Dn",      dap.step_over,                                                                    desc = "Step Over" },
     { "<Leader>Di",      dap.step_into,                                                                    desc = "Step Into" },
     { "<Leader>Do",      dap.step_out,                                                                     desc = "Step Out" },
+    { "<Leader>Dj",      function() dap.goto_(nil) end,                                                    desc = "Jump to Cursor" },
     { "<Leader>Dr",      dap.run_to_cursor,                                                                desc = "Run to Cursor" },
     { "<Leader>DR",      dap.restart,                                                                      desc = "Restart" },
     { "<Leader>Dt",      dap.terminate,                                                                    desc = "Terminate" },
