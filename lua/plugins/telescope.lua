@@ -61,16 +61,6 @@ M.opts = {
 
 function M.config(_, opts)
   local wk = require "which-key"
-  wk.add {
-    { "<leader>?",  ":Telescope oldfiles<CR>",                  silent = true, desc = "Recent files" },
-    { "<leader>fg", ":Telescope live_grep<CR>",                 silent = true, desc = "Live GREP" },
-    { "<leader>fh", ":Telescope help_tags<CR>",                 silent = true, desc = "Help tags" },
-    { "<leader>ft", ":Telescope pickers<CR>",                   silent = true, desc = "Pickers" },
-    { "<leader>ff", ":Telescope current_buffer_fuzzy_find<CR>", silent = true, desc = "Fuzzy find" },
-    { "gb",         ":Telescope buffers<CR>",                   silent = true, desc = "Document symbols" },
-    { "gs",         ":Telescope lsp_document_symbols<CR>",      silent = true, desc = "Document symbols" },
-    { "gS",         ":Telescope lsp_workspace_symbols<CR>",     silent = true, desc = "Workspace symbols" },
-  }
 
   local open_with_trouble = function(bufnr)
     ---@diagnostic disable-next-line: missing-fields
