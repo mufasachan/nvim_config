@@ -5,23 +5,23 @@ local plugin = { "Shatur/neovim-session-manager" }
 plugin.dependencies = { "plenary", "which-key" }
 
 plugin.opts = {
-	autosave_ignore_filetypes = {
-		"gitcommit",
-		"gitrebase",
-		"dashboard",
-		"NvimTree"
-	},
+  autosave_ignore_filetypes = {
+    "gitcommit",
+    "gitrebase",
+    "dashboard",
+    "NvimTree"
+  },
 }
 
 function plugin.config(_, opts)
-	local config = require("session_manager.config")
-	opts.autoload_mode = { config.AutoloadMode.Disabled }
+  local config = require("session_manager.config")
+  opts.autoload_mode = { config.AutoloadMode.Disabled }
 
-	require("which-key").add({
-		{ lhs = "<Leader>s", rhs = "<CMD>SessionManager load_session<CR>", desc = "Sessions", silent = true }
-	})
+  require("which-key").add({
+    { lhs = "<Leader><C-s>", rhs = "<CMD>SessionManager load_session<CR>", desc = "Sessions", silent = true }
+  })
 
-	require("session_manager").setup(opts)
+  require("session_manager").setup(opts)
 end
 
 return plugin

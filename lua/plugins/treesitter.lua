@@ -63,12 +63,11 @@ M.opts = {
     },
     swap = {
       enable = true,
-      -- those are meh keybindings
       swap_next = {
-        ["<leader>p>"] = "@parameter.inner",
+        ["<leader>s"] = "@parameter.inner",
       },
       swap_previous = {
-        ["<leader>p<"] = "@parameter.inner",
+        ["<leader>S"] = "@parameter.inner",
       },
     },
     select = {
@@ -77,6 +76,8 @@ M.opts = {
       keymaps = {
         ["ai"] = "@conditional.outer",
         ["ii"] = "@conditional.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
       }
