@@ -24,6 +24,38 @@ local function yank_buffername()
   vim.fn.setreg("\"", vim.fn.bufname("%"))
 end
 
+--- @param direction "up" | "down"
+--- @return fun(): nil
+local function scroll_zz(direction)
+  local function _scroll_zz()
+    local height = vim.api.nvim_win_get_height(0)
+    local amount
+    if height >= 30 then
+      amount = height - 3
+    elseif height >= 18 then
+      amount = height - 2
+    else
+      amount = height - 1
+    end
+
+    local cursor = vim.api.nvim_win_get_cursor(0)
+    if direction == "down" then
+      vim.api.nvim_win_set_cursor(0, {
+        math.min(cursor[1] + amount, vim.api.nvim_buf_line_count(0)),
+        cursor[2]
+      })
+    else
+      vim.api.nvim_win_set_cursor(0, {
+        math.max(1, cursor[1] - amount),
+        cursor[2]
+      })
+    end
+    vim.cmd("normal! zz")
+  end
+
+  return _scroll_zz
+end
+
 wk.add {
   -- Common
   { "<Leader>q",     "<CMD>q<CR>",       desc = "Quit",                                    hidden = true },
@@ -37,6 +69,8 @@ wk.add {
   -- jk is Esc
   { mode = "i",      lhs = "jk",         rhs = "<ESC>" },
   -- better go/up
+  { "<S-Up>",        scroll_zz("up"),    silent = true },
+  { "<S-Down>",      scroll_zz("down"),  silent = true },
   { mode = "nx",     "j",                "v:count == 0 ? 'gj' : 'j'",                      silent = true, expr = true },
   { mode = "nx",     "k",                "v:count == 0 ? 'gk' : 'k'",                      silent = true, expr = true },
   -- Split navigation
