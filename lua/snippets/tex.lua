@@ -43,12 +43,6 @@ local snippets = {
     t("}"),
     i(0)
   }),
-  s("para", {
-    t("\\paragraph{"),
-    i(1, "text"),
-    t("}"),
-    i(0)
-  }),
   s("sectionref", {
     t("Section~\\ref{"),
     c(1, { t("sub"), t("ssub"), t("sec") }),
@@ -62,6 +56,13 @@ local snippets = {
     i(1, "text"),
     t("}"),
     i(0)
+  }),
+  s("frame", {
+    t("\\begin{frame}{"),
+    i(1),
+    t({ "}", "" }),
+    i(2),
+    t({ "", "\\end{frame}", "" }),
   }),
 }
 
