@@ -15,6 +15,15 @@ local function zz_horizontal()
   vim.fn.winrestview(view)
 end
 
+local function yank_buffername()
+  local bufname = vim.fn.bufname("%")
+
+  if vim.uv.fs_stat(bufname) then
+    bufname = vim.fs.relpath(bufname, vim.uv.cwd() or "/") or bufname
+  end
+  vim.fn.setreg("\"", vim.fn.bufname("%"))
+end
+
 wk.add {
   -- Common
   { "<Leader>q",     "<CMD>q<CR>",       desc = "Quit",                                    hidden = true },
@@ -22,6 +31,7 @@ wk.add {
   { "<Leader><C-d>", "<CMD>enew<CR>",    desc = "Create draft",                            silent = true },
   -- Back to previous buffer
   { "<Leader>b",     "<CMD>b#<CR>",      desc = "Previous buffer" },
+  { "<Leader>c",     yank_buffername,    desc = "Yank buffer name" },
   -- No register for x
   { mode = "nx",     lhs = "x",          rhs = '"_x' },
   -- jk is Esc

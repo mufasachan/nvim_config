@@ -1,6 +1,21 @@
 local plugin = { "nvimdev/dashboard-nvim" }
 plugin.dependencies = { "nvim-tree/nvim-web-devicons", "which-key" }
 
+local function folder_cd()
+  local fzf = require("fzf-lua")
+
+  fzf.fzf_exec("fd -H -E .git -t d", {
+    prompt = "Folder: ",
+    actions = {
+      ["default"] = function(selected)
+        if selected and #selected > 0 then
+          vim.print(selected)
+        end
+      end,
+    },
+  })
+end
+
 local function goto_settings()
   vim.cmd.cd("~/.config/nvim")
   vim.cmd("SessionManager load_current_dir_session")
@@ -39,7 +54,7 @@ local function create_banner()
       desc = " Open folders ...",
       key = "f",
       key_format = "%s",
-      action = "Telescope cdfolder"
+      action = folder_cd
     },
     {
       icon = "",
