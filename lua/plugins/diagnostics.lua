@@ -22,9 +22,9 @@ local function set_lspkeymaps()
   local trouble = require "trouble"
   local wk = require "which-key"
   wk.add({
-    { lhs = "<Leader>d",  group = "Diagnostics" },
+    { lhs = "<Leader>x",  group = "Diagnostics" },
     { lhs = "<Leader>t",  group = "Trouble" },
-    { lhs = "<Leader>dq", rhs = "<CMD>Trouble qflist focus=1<CR>", desc = "qflist" },
+    { lhs = "<Leader>xq", rhs = "<CMD>Trouble qflist focus=1<CR>", desc = "qflist" },
   })
 
   --- Utils command for mapping action on Trouble's modes
@@ -39,19 +39,20 @@ local function set_lspkeymaps()
     maplua(mode, lhs, rhs_lua, desc)
   end
   -- Toggle trouble modes
-  mapmode("n", "<leader>dd", "diagnostics", "Diagnostics")
-  mapmode("n", "<leader>ts", "my_symbols", "Symbols")
-  mapmode("n", "<leader>td", "lsp_definitions", "Definition")
-  mapmode("n", "<leader>tr", "lsp_references", "References")
-  mapmode("n", "<leader>tq", "qflist", "Quickfix")
-  mapmode("n", "<leader>tT", "lsp_type_definitions", "Type definition")
-  mapmode("n", "<leader>ta", "my_lsp", "Show all")
-  maplua("n", "<leader>tt", trouble.focus, "Focus")
-  maplua("n", "<leader>tc", trouble.close, "Close")
+  mapmode("n", "<Leader>xd", "diagnostics", "Diagnostics")
+  mapmode("n", "<Leader>ts", "my_symbols", "Symbols")
+  mapmode("n", "<Leader>td", "lsp_definitions", "Definition")
+  mapmode("n", "<Leader>tr", "lsp_references", "References")
+  mapmode("n", "<Leader>tq", "qflist", "Quickfix")
+  mapmode("n", "<Leader>tT", "lsp_type_definitions", "Type definition")
+  mapmode("n", "<Leader>ta", "my_lsp", "Show all")
+  mapmode("n", "<leader>to", "fzf_files", "Fzf files")
+  maplua("n", "<Leader>tt", trouble.focus, "Focus")
+  maplua("n", "<Leader>tc", trouble.close, "Close")
   -- Navigation
-  maplua("n", "<leader>dn", function() vim.diagnostic.jump({ count = 1, float = true }) end, "Next")
-  maplua("n", "<leader>dp", function() vim.diagnostic.jump({ count = -1, float = true }) end, "Previous")
-  maplua("n", "<leader>ds", vim.diagnostic.open_float, "Show (current)")
+  maplua("n", "<Leader>xn", function() vim.diagnostic.jump({ count = 1, float = true }) end, "Next")
+  maplua("n", "<Leader>xp", function() vim.diagnostic.jump({ count = -1, float = true }) end, "Previous")
+  maplua("n", "<Leader>xs", vim.diagnostic.open_float, "Show (current)")
 end
 
 plugin.opts = {

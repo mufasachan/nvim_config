@@ -130,13 +130,13 @@ M.config = function(_, opts)
   end
 
   require("which-key").add {
-    { "<Leader>Du",  group = "UI", },
-    { "<Leader>Duo", dapui.open,        desc = "Open" },
-    { "<Leader>Dus", focus_stack,       desc = "Focus Staks" },
-    { "<Leader>Dur", focus_repl,        desc = "Focus REPL" },
-    { "<Leader>Dub", focus_breakpoints, desc = "Focus Breakpoints" },
-    { "<Leader>Dut", focus_terminal,    desc = "Focus Terminal" },
-    { "<Leader>Duc", dapui.close,       desc = "Close" },
+    { "<Leader>du",  group = "UI", },
+    { "<Leader>duo", dapui.open,        desc = "Open" },
+    { "<Leader>dus", focus_stack,       desc = "Focus Staks" },
+    { "<Leader>dur", focus_repl,        desc = "Focus REPL" },
+    { "<Leader>dub", focus_breakpoints, desc = "Focus Breakpoints" },
+    { "<Leader>dut", focus_terminal,    desc = "Focus Terminal" },
+    { "<Leader>duc", dapui.close,       desc = "Close" },
   }
 end
 
