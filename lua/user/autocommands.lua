@@ -164,6 +164,8 @@ else
   local stat = vim.uv.fs_stat(argv[1])
   if stat and stat.type == "directory" then
     vim.cmd.cd(argv[1])
-    vim.cmd.SessionManager("load_current_dir_session")
+    vim.schedule(function()
+      vim.cmd.SessionManager("load_current_dir_session")
+    end)
   end
 end
