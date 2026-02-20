@@ -18,7 +18,9 @@ require("user.neovide")
 require("user.plugins")
 require("user.options")
 
-require("lazy").setup("plugins")
+require("lazy").setup(
+  { spec = "plugins", rocks = { hererocks = true } }
+)
 vim.cmd.packadd("nohlsearch")
 
 require("user.autocommands")

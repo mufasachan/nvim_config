@@ -1,11 +1,12 @@
-local M = { "iamcco/markdown-preview.nvim" }
-M.cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" }
-M.build = "cd app && yarn install"
+local M = { "MeanderingProgrammer/render-markdown.nvim" }
+M.name = "render-markdown"
 
-function M.init()
-  vim.g.mkdp_filetypes = { "markdown" }
-end
-
-M.ft = { "markdown" }
+M.dependencies = { "treesitter", "nvim-tree/nvim-web-devicons" }
+M.opts = {
+  latex = { position = "above" },
+  restart_highlighter = true,
+  completions = { lsp = { enabled = true } },
+  file_types = { "markdown" },
+}
 
 return M

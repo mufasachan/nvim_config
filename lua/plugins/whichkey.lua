@@ -22,6 +22,7 @@ plugin.opts = {
   },
   triggers = {
     { "<Leader>", mode = { "n" } },
+    { "\\",       mode = { "n" } },
     { "gr",       mode = { "n" } }
   },
   icons = { rules = false },
