@@ -1,8 +1,6 @@
 -- Languages specific plugins
 return {
-	require "plugins.languages.flutter",
-	require "plugins.languages.latex",
-	require "plugins.languages.rust",
-	require "plugins.languages.lua",
+  require "plugins.languages.flutter",
+  require "plugins.languages.latex",
+  require "plugins.languages.lua",
 }
-
