@@ -152,8 +152,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 local startup_group = vim.api.nvim_create_augroup("Startup", {})
 local argv = vim.fn.argv()
 
--- No args -> dashboard should be displayed.
-if #argv == 0 then
+-- No args or empty arg -> dashboard should be displayed.
+if #argv == 0 or #argv[1] == 0 then
   vim.api.nvim_create_autocmd("VimEnter", {
     callback = function()
       vim.cmd("Dashboard")
