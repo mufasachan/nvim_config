@@ -2,14 +2,16 @@ local M = { "nvim-treesitter/nvim-treesitter-context" }
 M.name = "treesitter-context"
 
 M.opts = { max_lines = 4 }
-M.dependencies = { "which-key" }
 
-function M.config(_, opts)
+function M.config(plugin, opts)
   local wk = require "which-key"
+  local context = require(plugin.name)
+
   wk.add {
-    { "gC", function() require("treesitter-context").go_to_context() end, silent = true },
+    { "gC", function() context.go_to_context() end, silent = true },
   }
-  require "treesitter-context".setup(opts)
+
+  context.setup(opts)
 end
 
 return M

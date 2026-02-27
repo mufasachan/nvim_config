@@ -1,93 +1,34 @@
-local M = { "nvim-treesitter/nvim-treesitter" }
-M.name = "treesitter"
+local M               = { "nvim-treesitter/nvim-treesitter" }
+M.name                = "treesitter"
 
-M.build = {
-  build = ":TSUpdate",
-}
+M.branch              = "main"
+M.build               = ":TSUpdate"
 
-M.dependencies = {
-  "treesitter-context",
-  "nvim-treesitter/nvim-treesitter-textobjects",
-}
+local excluded_hl     = {}
+local excluded_fold   = { "dart" }
+local excluded_indent = {}
 
-M.main = "nvim-treesitter.configs"
-M.opts = {
-  ensure_installed = {
-    "gitignore",
-    "c",
-    "vim",
-    "vimdoc",
-    "query",
-    "markdown",
-    "markdown_inline",
-    "bash",
-    "json",
-    "python",
-    "yaml",
-    "lua"
-  },
-  ignore_install = { "latex" },
-
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
-  -- Automatically install missing parsers when entering buffer
-  auto_install = false,
-
-  highlight = { enable = true },
-  incremental_selection = { enable = true },
-  textobjects = {
-    move = {
-      enable = true,
-      disable = { "dart" },
-      set_jumps = true, -- whether to set jumps in the jumplist
-      goto_next_start = {
-        ["]m"] = "@function.outer",
-        ["]c"] = "@class.outer",
-        ["]i"] = "@conditional.outer",
-      },
-      goto_next_end = {
-        ["]M"] = "@function.outer",
-        ["]C"] = "@class.outer",
-        ["]I"] = "@conditional.outer",
-      },
-      goto_previous_start = {
-        ["[m"] = "@function.outer",
-        ["[c"] = "@class.outer",
-        ["[i"] = "@conditional.outer",
-      },
-      goto_previous_end = {
-        ["[M"] = "@function.outer",
-        ["[C"] = "@class.outer",
-        ["[I"] = "@conditional.outer",
-      },
-    },
-    swap = {
-      enable = true,
-      swap_next = {
-        ["<leader>s"] = "@parameter.inner",
-      },
-      swap_previous = {
-        ["<leader>S"] = "@parameter.inner",
-      },
-    },
-    select = {
-      enable = true,
-      lookahead = true,
-      keymaps = {
-        ["ai"] = "@conditional.outer",
-        ["ii"] = "@conditional.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-      }
-    },
-  },
-  indent = {
-    enable = true,
-    disable = { "dart" },
-  },
-  additional_vim_regex_highlighting = true,
-}
+function M.config()
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = "*",
+    callback = function(args)
+      local treesitter = require "nvim-treesitter"
+      if vim.list_contains(treesitter.get_installed(), args.match) then
+        if not vim.list_contains(excluded_hl, args.match) then
+          vim.treesitter.start(args.buf, args.match)
+        end
+        if not vim.list_contains(excluded_fold, args.match) then
+          vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+          vim.wo[0][0].foldmethod = "expr"
+        end
+        if not vim.list_contains(excluded_indent, args.match) then
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
+      elseif vim.list_contains(treesitter.get_available(), args.match) then
+        vim.notify('No TS installed, parser available. Use ":TSInstall ' .. args.match .. '".')
+      end
+    end
+  })
+end
 
 return M
