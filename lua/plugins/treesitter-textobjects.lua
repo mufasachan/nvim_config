@@ -38,6 +38,10 @@ M.config = function(_, opts)
     end, desc = "Swap next parameter" },
     { mode = { "n", "x", "o" }, lhs = ";",  rhs = repeatable_move.repeat_last_move_next },
     { mode = { "n", "x", "o" }, lhs = ",",  rhs = repeatable_move.repeat_last_move_previous },
+    { mode = { "n", "x", "o" }, lhs = "f",  rhs = repeatable_move.builtin_f_expr,                                expr = true },
+    { mode = { "n", "x", "o" }, lhs = "F",  rhs = repeatable_move.builtin_F_expr,                                expr = true },
+    { mode = { "n", "x", "o" }, lhs = "t",  rhs = repeatable_move.builtin_t_expr,                                expr = true },
+    { mode = { "n", "x", "o" }, lhs = "T",  rhs = repeatable_move.builtin_T_expr,                                expr = true },
     -- notebook cell
     { mode = { "n", "x", "o" }, lhs = "]b", rhs = f(move.goto_next_start, "@code_cell.inner", "textobjects") },
     { mode = { "n", "x", "o" }, lhs = "[b", rhs = f(move.goto_previous_start, "@code_cell.inner", "textobjects") },
