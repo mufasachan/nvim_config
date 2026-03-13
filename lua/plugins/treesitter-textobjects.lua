@@ -22,6 +22,8 @@ M.config = function(_, opts)
     end
   end
   require "which-key".add {
+    { mode = { "x", "o" }, lhs = "ib", rhs = f(select, "@code_cell.inner", "textobjects") },
+    { mode = { "x", "o" }, lhs = "ab", rhs = f(select, "@code_cell.outer", "textobjects") },
     { mode = { "x", "o" }, lhs = "if", rhs = f(select, "@function.inner", "textobjects") },
     { mode = { "x", "o" }, lhs = "af", rhs = f(select, "@function.outer", "textobjects") },
     { mode = { "x", "o" }, lhs = "ic", rhs = f(select, "@class.inner", "textobjects") },
