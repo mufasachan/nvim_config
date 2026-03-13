@@ -7,6 +7,7 @@ M.opts = {
   restart_highlighter = true,
   completions = { lsp = { enabled = true } },
   file_types = { "markdown" },
+  html = { enabled = true, comment = { conceal = false } },
 }
 
 return M
