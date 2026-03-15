@@ -6,7 +6,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local client = vim.lsp.get_client_by_id(event.data.client_id)
 
     if client and client.name == "basedpyright" then
-      wk.add { { "gS", "<CMD>:Telescope lsp_dynamic_workspace_symbols<CR>", silent = true, buffer = event.buf } }
+      wk.add { { "gS", "<CMD>:FzfLua lsp_live_workspace_symbols<CR>", silent = true, buffer = event.buf } }
     end
   end
 })

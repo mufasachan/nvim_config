@@ -44,7 +44,7 @@ I will try to condense the **mess** of notebook setup on neovim using molten. He
 #### Binaries that should be in your path
 
 - `make`
-- `fd`: telescope uses it
+- `fd`: `fzf-lua` uses it
 - `lazygit`: The mapping `<Leader>L` is **for** lazygit.
 - For markdown (without code execution)
 - `quarto`: [see notebook section](#notebook-support-with-molten.nvim)
@@ -59,7 +59,7 @@ I will try to condense the **mess** of notebook setup on neovim using molten. He
     * search `/` with `ignorecase` and `smartcase`
     * `wrap` is on 
     * indent options: 
-    * `cmdheight=0` and `helpheight=42`
+    * `helpheight=42`
 - `[i` and so on: it goes to the conditional, not the definition of a term. See `:h include-search` for more details. 
 
 ### Missing features

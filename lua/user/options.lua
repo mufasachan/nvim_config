@@ -18,5 +18,4 @@ vim.o.showmode = false
 
 vim.o.exrc = true
 
-vim.o.cmdheight = 0
 vim.o.helpheight = 42

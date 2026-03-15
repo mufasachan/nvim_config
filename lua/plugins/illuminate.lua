@@ -2,11 +2,11 @@ local plugin = { "https://github.com/RRethy/vim-illuminate" }
 plugin.name = "illuminate"
 
 plugin.opts = {
-	filetypes_denylist = { "help", "TelescopePrompt", "FineCmdlinePrompt" }
+  filetypes_denylist = { "help" }
 }
 
 plugin.config = function(_, opts)
-	require("illuminate").configure(opts)
+  require("illuminate").configure(opts)
 end
 
 return plugin
