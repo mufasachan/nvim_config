@@ -65,6 +65,9 @@ wk.add {
   { "<Leader>b",         "<CMD>b#<CR>",         desc = "Previous buffer" },
   -- Yank command
   { group = "<Leader>y", desc = "Yank" },
+  { "<M-y>",             '"+y', },
+  { "<M-p>",             '"+p', },
+  { "<M-S-p>",           '"+P', },
   { "<Leader>yn",        yank_buffername,       desc = "Yank buffer name" },
   { "<Leader>yc",        "<CMD>silent %y+<CR>", desc = "Yank buffer content to clipboard",        silent = true },
   -- No register for x
