@@ -14,6 +14,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
       {
         "gI",
         function()
+          -- Edit the ' mark manually because vim.fn.search sets mark
+          --  - Go to top and search of the import pattern
+          --  - If found, go to the import name and set a mark
+          --  - Go back to the original position (saved) and set a mark there
+          --  - Profit of the `` or '' to back where you were
           -- Search forward from top of file for an import line with this symbol
           local word = vim.fn.expand("<cword>")
           local saved_position = vim.api.nvim_win_get_cursor(0)

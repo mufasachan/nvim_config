@@ -10,6 +10,40 @@ M.opts   = {
   select = { lookahead = true },
 }
 
+local function goto_first_or_last_textobject(query_string, is_first)
+  local ts = vim.treesitter
+  local bufnr = vim.api.nvim_get_current_buf()
+  local lang = ts.language.get_lang(vim.bo[bufnr].filetype)
+  if not lang then return end
+
+  local ok, query = pcall(ts.query.get, lang, "textobjects")
+  if not ok or not query then return end
+
+  local tree = ts.get_parser(bufnr, lang):parse()[1]
+  local root = tree:root()
+
+  local positions = {}
+  for id, node in query:iter_captures(root, bufnr, 0, -1) do
+    local capture_name = query.captures[id]
+    -- match e.g. "@function.outer" → strip the leading "@"
+    if capture_name == query_string:gsub("^@", "") then
+      local row, col = node:start()
+      table.insert(positions, { row = row, col = col })
+    end
+  end
+
+  if #positions == 0 then return end
+
+  -- sort by position (they may not come in order for all languages)
+  table.sort(positions, function(a, b)
+    return a.row < b.row or (a.row == b.row and a.col < b.col)
+  end)
+
+  local target = is_first and positions[1] or positions[#positions]
+  vim.cmd("normal m'")
+  vim.api.nvim_win_set_cursor(0, { target.row + 1, target.col })
+end
+
 M.config = function(_, opts)
   local textobject = require("nvim-treesitter-textobjects")
   local select = require("nvim-treesitter-textobjects.select").select_textobject
@@ -49,6 +83,12 @@ M.config = function(_, opts)
     { mode = { "n", "x", "o" }, lhs = "[b", rhs = f(move.goto_previous_start, "@code_cell.inner", "textobjects") },
     { mode = { "n", "x", "o" }, lhs = "]B", rhs = f(move.goto_next_end, "@code_cell.inner", "textobjects") },
     { mode = { "n", "x", "o" }, lhs = "[B", rhs = f(move.goto_previous_end, "@code_cell.inner", "textobjects") },
+    { mode = { "n", "x", "o" }, lhs = "[i", rhs = function()
+      goto_first_or_last_textobject("@code_cell.inner", true)
+    end, desc = "Go to first cell (import)" },
+    { mode = { "n", "x", "o" }, lhs = "]l", rhs = function()
+      goto_first_or_last_textobject("@code_cell.inner", false)
+    end, desc = "Go to last cell (current)" },
     -- class
     { mode = { "n", "x", "o" }, lhs = "]c", rhs = f(move.goto_next_start, "@class.outer", "textobjects") },
     { mode = { "n", "x", "o" }, lhs = "[c", rhs = f(move.goto_previous_start, "@class.outer", "textobjects") },

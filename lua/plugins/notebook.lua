@@ -11,6 +11,23 @@ function M.init()
   vim.g.molten_image_provider = "image.nvim"
   vim.g.molten_output_win_max_height = 20
   vim.g.molten_virt_lines_off_by_1 = true
+  vim.g.molten_auto_open_output = true
+end
+
+local function run_cell_go_next()
+  require("quarto.runner").run_cell()
+  require("nvim-treesitter-textobjects.move").goto_next_start("@code_cell.inner", "textobjects")
+end
+
+local function split_cell()
+  local pos = vim.api.nvim_win_get_cursor(0)
+  vim.api.nvim_buf_set_lines(0, pos[1] - 1, pos[1] - 1, false, {
+    "",
+    "```",
+    "",
+    "```python",
+  })
+  vim.api.nvim_win_set_cursor(0, { pos[1], pos[2] })
 end
 
 function M.config()
@@ -18,16 +35,20 @@ function M.config()
   local wk = require("which-key")
   local function set_key()
     require("which-key").add({
-      { mode = "v", lhs = "\\e",                         rhs = "<CMD>MoltenEvaluateVisual<CR>",   desc = "Visual", buffer = true },
-      { "\\i",      "<CMD>MoltenInit<CR>",               desc = "Init molten",                    buffer = true },
-      { "\\e",      "<CMD>MoltenEvaluateOperator<CR>",   desc = "Evaluate",                       buffer = true },
-      { "\\rc",     runner.run_cell,                     desc = "run cell",                       silent = true,   buffer = true },
-      { "\\ra",     runner.run_above,                    desc = "run cell and above",             silent = true,   buffer = true },
-      { "\\rA",     runner.run_all,                      desc = "run all cells",                  silent = true,   buffer = true },
-      { "\\rl",     runner.run_line,                     desc = "run line",                       silent = true,   buffer = true },
-      { "\\rr",     runner.run_range,                    desc = "run visual range",               silent = true,   buffer = true },
-      { "\\RA",     function() runner.run_all(true) end, desc = "run all cells of all languages", silent = true,   buffer = true },
-      { "\\os",     ":noautocmd MoltenEnterOutput<CR>",  desc = "open output window",             silent = true, },
+      { mode = "v",    lhs = "\\e",                         rhs = "<CMD>MoltenEvaluateVisual<CR>",   desc = "Visual",            buffer = true },
+      { "\\i",         "<CMD>MoltenInit<CR>",               desc = "Init molten",                    buffer = true },
+      { "\\R",         "<CMD>MoltenRestart<CR>",            desc = "Restart kernel",                 buffer = true },
+      { "\\e",         "<CMD>MoltenEvaluateOperator<CR>",   desc = "Evaluate",                       buffer = true },
+      { mode = "i",    lhs = "<C-Enter>",                   rhs = runner.run_cell,                   desc = "run cell (insert)", silent = true, buffer = true },
+      { "<C-Enter>",   runner.run_cell,                     desc = "run cell",                       silent = true,              buffer = true },
+      { "<C-S-Enter>", run_cell_go_next,                    desc = "run cell and go next",           silent = true,              buffer = true },
+      { "\\ra",        runner.run_above,                    desc = "run cell and above",             silent = true,              buffer = true },
+      { "\\s",         split_cell,                          desc = "Split cell",                     silent = true,              buffer = true },
+      { "\\rA",        runner.run_all,                      desc = "run all cells",                  silent = true,              buffer = true },
+      { "\\rl",        runner.run_line,                     desc = "run line",                       silent = true,              buffer = true },
+      { "\\rr",        runner.run_range,                    desc = "run visual range",               silent = true,              buffer = true },
+      { "\\rA",        function() runner.run_all(true) end, desc = "run all cells of all languages", silent = true,              buffer = true },
+      { "\\os",        ":noautocmd MoltenEnterOutput<CR>",  desc = "open output window",             silent = true, },
     })
   end
 

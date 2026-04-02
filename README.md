@@ -6,6 +6,10 @@ My personal neovim configuration.
 
 The configuration is highly customized and have some assumptions on how to use neovim and what binaries should be accessible. This section aims to document this.
 
+#### Terminal specs
+
+I use kitty for image rendering in general and I can use `<Enter>` with modifier because of the kitty protocol. So if kitty is not used, related configurations might break.
+
 #### markdown experience
 
 **Note**: this section does not include code execution capabilities, [see next section](#notebook-support-with-molten.nvim).
