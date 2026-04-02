@@ -1,5 +1,6 @@
 -- Space as leader key
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 require("user.ft")
 require("user.neovide")
