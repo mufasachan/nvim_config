@@ -20,15 +20,15 @@ local function yank_relative(selected, _)
 end
 
 local function search_parent_folder(_, opts)
-  require("fzf-lua").files { cwd = vim.fs.dirname(opts.cwd or vim.uv.cwd()) }
+  require("fzf-lua").files { cwd = vim.fs.dirname(opts.cwd or vim.uv.cwd()), no_ignore = true }
 end
 
 local function search_current_buffer_parent_confirm()
-  vim.fn.feedkeys(":FzfLua files cwd=" .. vim.fs.dirname(vim.api.nvim_buf_get_name(0)))
+  vim.fn.feedkeys(":FzfLua files no_ignore=true cwd=" .. vim.fs.dirname(vim.api.nvim_buf_get_name(0)))
 end
 
 local function search_current_buffer_parent()
-  require("fzf-lua").files { cwd = vim.fs.dirname(vim.api.nvim_buf_get_name(0)) }
+  require("fzf-lua").files { cwd = vim.fs.dirname(vim.api.nvim_buf_get_name(0)), no_ignore = true }
 end
 
 M.opts = {
