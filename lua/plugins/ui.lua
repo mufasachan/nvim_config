@@ -1,8 +1,10 @@
 local nvim_notify = { "rcarriga/nvim-notify" }
+nvim_notify.opts = { background_colour = "#000000" }
+
 
 local noice = { "folke/noice.nvim" }
 noice.event = "VeryLazy"
-noice.dependencies = { nvim_notify, "rcarriga/nvim-notify", }
+noice.dependencies = { nvim_notify }
 noice.opts = {
   lsp = {
     -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
